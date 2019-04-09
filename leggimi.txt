@@ -1,0 +1,13 @@
+homepage.html
+
+- login + password + link "non sei registrato? Clicca qui"
+
+mail: controllo su formato mail? aaa@aaa.it
+
+regexp?
+
+------> se si clicca: registrazione.html
+
+con form di entrata comprendente dati, selezione stile pagine
+
+N.B. validare con regexp
