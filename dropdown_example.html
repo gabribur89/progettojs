@@ -19,7 +19,7 @@
 
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Dropdown button
+        Seleziona colore
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#" id="rosso" >Rosso</a>
@@ -31,8 +31,12 @@
     <script>
         $(document).ready(function(){
         $('.dropdown-menu a').click(function () {
-             // do something…
-             alert($(this).attr('id'));
+             // sostuisci il node del menu con la selezione
+             $('.dropdown-toggle').text($(this).attr('id')); 
+             // modifca al volo in background , non funziona ancora
+             $('body').css("background: #fff !important;");             
+ 
+              //alert($(this).attr('id'));
         });
 
 
