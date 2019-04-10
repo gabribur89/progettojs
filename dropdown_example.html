@@ -32,9 +32,20 @@
         $(document).ready(function(){
         $('.dropdown-menu a').click(function () {
              // sostuisci il node del menu con la selezione
-             $('.dropdown-toggle').text($(this).attr('id')); 
+             var color = $(this).attr('id'); 
+             $('.dropdown-toggle').text(color); 
              // modifca al volo in background , non funziona ancora
-             $('body').css("background: #fff !important;");             
+             switch(color){
+                case "rosso":
+                    $('body').css("background-color", "red");             
+                    break;
+                case "blue":
+                    $('body').css("background-color", "blue");             
+                    break;
+                case "giallo":
+                    $('body').css("background-color", "#FFFF00");             
+                    break;
+             }
  
               //alert($(this).attr('id'));
         });

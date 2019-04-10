@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>Benvenuto!</title>
+<style type="text/css">
+body {position: relative; background: black; margin: 0; padding: 0;}
+
+h1 {margin: -9px -9px 0.5em; padding: 15px 0 5px; text-align: right; background: #333; color: #667; letter-spacing: 0.5em; text-transform: lowercase; font: bold 25px sans-serif; height: 28px; vertical-align: middle; white-space: nowrap;}
+
+.scirttabianca {
+	color: #FFF;
+}
+.scrittabianca {
+	font-size: 14px;
+	font-style: italic;
+	text-decoration: blink;
+	letter-spacing: normal;
+}
+.scrittabianca {
+	color: #FFF;
+	font-size: 18px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+</style>
+<script language="JavaScript" type="text/JavaScript">
+
+function getCookie(c_name)
+{
+  c_start=document.cookie.indexOf(c_name + "=");
+  if (c_start!=-1)
+    {
+    c_start=c_start + c_name.length+1;
+    c_end=document.cookie.indexOf(";",c_start);
+    if (c_end==-1) c_end=document.cookie.length;
+    return unescape(document.cookie.substring(c_start,c_end));
+    }
+return "";
+}
+
+
+function check_form(f)
+{
+	var msg=""
+	var error=false;
+
+	if (f.username.value=="" || f.password.value=="") {msg=msg+"Non hai inserito i dati di login, se non sei registrato, registrati per continuare a visualizzare il sito."; error=true;}
+
+	else if (document.cookie)
+	{
+		var pw = getCookie(f.username.value);
+
+		if (pw != f.password.value) {msg=msg+"Dati non validi, se non sei registrato utilizza la pagina di registrazione per continuare a visitare il sito"; error=true;}
+	}
+	else { msg=msg+"Registrati"; error=true;}
+
+	if (error) {alert(msg); return false;}
+}
+
+function answer(f)
+{
+	var username=f.username.value;
+	var password=f.password.value;
+	var stile=f.style.value;
+
+	document.writeln("<html> <head> <title> Ciao! </title> </head>");
+	document.writeln("<style type = \text/css>")
+	document.writeln("<body>"); 
+	document.writeln("<h1 align=center> Login effettuato con successo </h>");
+	document.writeln("<p> Bentornato/a "+username+" </p>");
+
+	document.writeln("<img src= helper.jpg width=250 height=175 />");
+    document.writeln( "<a href= \" file:///C:/Users/Vanessa/Desktop/sito%20servizi%20web/homepage2.html \" > " + 
+       "Clicca qui per accedere alla Home " + name + "</a>" );
+	document.writeln("</body></html>");
+}
+</script>
+</head>
+<h1 class="pagetitle">Login-Vanessa Lumini Home Page</h1>
+
+	<h2 align="center"> <p class="scrittabianca"> Ciao! Effettua il login, se sei già iscritto, per visualizzare l'intero sito! 
+	  </p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<form name="myform" action="javascript:answer(document.myform)" method="post"  onsubmit="return(check_form(this))">
+	<p align="center">
+      <input name="username" type="text" id="username" size="20" maxlength="20" />
+	</p>
+	<p align="center">
+	  <input name="password" type="password" id="password" size="20" maxlength="15" />
+	</p>
+	<p align="center">
+		<input type="submit" name="Submit" value="ENTRA" />
+	</p>
+	<p align="center">&nbsp;</p>
+</form>
+<p align="center">  <span class="scirttabianca">Se vuoi registrarti clicca </span><a href=iscrizione.html>qui</a href> </p>
+</body>
+
+</html>

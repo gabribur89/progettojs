@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>CALCOLATRICE</title>
+</head>
+<style type="text/css">
+body {position: relative; background: black; margin: 0; padding: 0;}
+
+div#links {
+	position: absolute;
+	top: 129px;
+	left: 958px;
+	width: 166px;
+	height: 700px;
+	font: 16px Verdana, sans-serif;
+	z-index: 100;
+}
+div#links a {display: block; text-align: center; font: bold 1em sans-serif; 
+   padding: 5px 10px; margin: 0 0 1px; border-width: 0; 
+   text-decoration: none; color: #FFC; background: #444;
+   border-right: 5px solid #505050;}
+
+div#links a {display: block; text-align: center; font: bold 1em sans-serif; 
+   padding: 5px 10px; margin: 0 0 1px; border-width: 0; 
+   text-decoration: none; color: #FFC; background: #444;
+   border-right: 5px solid #505050;}
+div#links a:hover {color: #411; background: #AAA;
+   border-right: 5px double white;}
+   div#content {
+	position: absolute;
+	top: 14px;
+	left: 138px;
+	right: 25px;
+	color: #BAA;
+	background: #22232F;
+	font: 13px Verdana, sans-serif;
+	padding: 10px;
+	border: solid 5px #444;
+}
+div#content p {margin: 0 1em 1em;}
+div#content h3 {margin-bottom: 0.25em;}
+
+h1 {margin: -9px -9px 0.5em; padding: 15px 0 5px; text-align: right; background: #333; color: #667; letter-spacing: 0.5em; text-transform: lowercase; font: bold 25px sans-serif; height: 28px; vertical-align: middle; white-space: nowrap;}
+dt {font-weight: bold;}
+dd {margin-bottom: 0.66em;}
+div#content a:link {color: white;}
+div#content a:visited {color: #BBC;}
+div#content a:link:hover {color: #FF0;}
+div#content a:visited:hover {color: #CC0;}
+code, pre {color: #EDC; font: 110% monospace;}
+
+</style>>
+
+<p class="titolo1">Calcolatrice</p>
+
+<CENTER>
+
+<FORM name="Keypad" action="">
+<TABLE>
+<B>
+<TABLE width=120 height=200 border=10 cellpadding=2 cellspacing=3 class="pagetitle">
+<TR>
+<TD colspan=3 align=middle>
+<input name="ReadOut" type="Text" class="pagetitle" value="0" size=24 width=100%>
+</TD>
+<TD
+</TD>
+<TD>
+<input name="btnClear" type="Button" class="pagetitle" onClick="Clear()" value="  C  ">
+</TD>
+<TD><input name="btnClearEntry" type="Button" class="pagetitle" onClick="ClearEntry()" value="  CE ">
+</TD>
+</TR>
+<TR>
+<TD>
+<input name="btnSeven" type="Button" value="  7  " onClick="NumPressed(7)">
+</TD>
+<TD>
+<input name="btnEight" type="Button" value="  8  " onClick="NumPressed(8)">
+</TD>
+<TD>
+<input name="btnNine" type="Button" value="  9  " onClick="NumPressed(9)">
+</TD>
+<TD>
+</TD>
+<TD>
+<input name="btnNeg" type="Button" value=" +/- " onClick="Neg()">
+</TD>
+<TD>
+<input name="btnPercent" type="Button" value="  % " onClick="Percent()">
+</TD>
+</TR>
+<TR>
+<TD>
+<input name="btnFour" type="Button" value="  4  " onClick="NumPressed(4)">
+</TD>
+<TD>
+<input name="btnFive" type="Button" value="  5  " onClick="NumPressed(5)">
+</TD>
+<TD>
+<input name="btnSix" type="Button" value="  6  " onClick="NumPressed(6)">
+</TD>
+<TD>
+</TD>
+<TD align=middle><input name="btnPlus" type="Button" value="  +  " onClick="Operation('+')">
+</TD>
+<TD align=middle><input name="btnMinus" type="Button" value="   -   " onClick="Operation('-')">
+</TD>
+</TR>
+<TR>
+<TD>
+<input name="btnOne" type="Button" value="  1  " onClick="NumPressed(1)">
+</TD>
+<TD>
+<input name="btnTwo" type="Button" value="  2  " onClick="NumPressed(2)">
+</TD>
+<TD>
+<input name="btnThree" type="Button" value="  3  " onClick="NumPressed(3)">
+</TD>
+<TD>
+</TD>
+<TD align=middle><input name="btnMultiply" type="Button" value="  *  " onClick="Operation('*')">
+</TD>
+<TD align=middle><input name="btnDivide" type="Button" value="   /   " onClick="Operation('/')">
+</TD>
+</TR>
+<TR>
+<TD>
+<input name="btnZero" type="Button" value="  0  " onClick="NumPressed(0)">
+</TD>
+<TD>
+<input name="btnDecimal" type="Button" value="   .  " onClick="Decimal()">
+</TD>
+<TD colspan=3>
+</TD>
+<TD>
+<input name="btnEquals" type="Button" class="pagetitle" onClick="Operation('=')" value="  =  ">
+</TD>
+</TR>
+</TABLE>
+</TABLE>
+</B>
+</FORM>
+</CENTER>
+
+<font face="Verdana, Arial, Helvetica" size=2>
+<SCRIPT LANGUAGE="JavaScript">
+
+var FKeyPad = document.Keypad;
+var Accumulate = 0;
+var FlagNewNum = false;
+var PendingOp = "";
+function NumPressed (Num) {
+if (FlagNewNum) {
+FKeyPad.ReadOut.value  = Num;
+FlagNewNum = false;
+   }
+else {
+if (FKeyPad.ReadOut.value == "0")
+FKeyPad.ReadOut.value = Num;
+else
+FKeyPad.ReadOut.value += Num;
+   }
+}
+function Operation (Op) {
+var Readout = FKeyPad.ReadOut.value;
+if (FlagNewNum && PendingOp != "=");
+else
+{
+FlagNewNum = true;
+if ( '+' == PendingOp )
+Accumulate += parseFloat(Readout);
+else if ( '-' == PendingOp )
+Accumulate -= parseFloat(Readout);
+else if ( '/' == PendingOp )
+Accumulate /= parseFloat(Readout);
+else if ( '*' == PendingOp )
+Accumulate *= parseFloat(Readout);
+else
+Accumulate = parseFloat(Readout);
+FKeyPad.ReadOut.value = Accumulate;
+PendingOp = Op;
+   }
+}
+function Decimal () {
+var curReadOut = FKeyPad.ReadOut.value;
+if (FlagNewNum) {
+curReadOut = "0.";
+FlagNewNum = false;
+   }
+else
+{
+if (curReadOut.indexOf(".") == -1)
+curReadOut += ".";
+   }
+FKeyPad.ReadOut.value = curReadOut;
+}
+function ClearEntry () {
+FKeyPad.ReadOut.value = "0";
+FlagNewNum = true;
+}
+function Clear () {
+Accumulate = 0;
+PendingOp = "";
+ClearEntry();
+}
+function Neg () {
+FKeyPad.ReadOut.value = parseFloat(FKeyPad.ReadOut.value) * -1;
+}
+function Percent () {
+FKeyPad.ReadOut.value = (parseFloat(FKeyPad.ReadOut.value) / 100) * parseFloat(Accumulate);
+}
+</SCRIPT>
+<body>
+<div id="links">
+<a href="homepage2.html">Home</a>
+<a href="front.html">Login</a>
+<a href="games.html">Giochi</a>
+<a href="../img_animate.html">Galleria</a>
+<a href="Calcolatice.html">Calcolatrice</a>
+<a href="info.html">Info</a>
+</div>
+<p>Il mio indirizzo  
+        <img src="a16.gif" width="50" height="55" alt="email" /> è <a href = "mailto:vanessalumini@saragel.it">vanessalumini@saragel.it 
+</a>.Clicca sull'indirizzo per inviarmi una e-mail .</p
+></body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it">
+<head>
+
+<title>Vanessa Lumini Website Memory</title>
+    
+    
+
+<style type="text/css">
+body {position: relative; background: black; margin: 0; padding: 0;}
+
+div#links {
+	position: absolute;
+	top: 140px;
+	left: 1089px;
+	width: 166px;
+	height: 700px;
+	font: 16px Verdana, sans-serif;
+	z-index: 100;
+}
+div#links a {display: block; text-align: center; font: bold 1em sans-serif; 
+   padding: 5px 10px; margin: 0 0 1px; border-width: 0; 
+   text-decoration: none; color: #FFC; background: #444;
+   border-right: 5px solid #505050;}
+
+div#links a {display: block; text-align: center; font: bold 1em sans-serif; 
+   padding: 5px 10px; margin: 0 0 1px; border-width: 0; 
+   text-decoration: none; color: #FFC; background: #444;
+   border-right: 5px solid #505050;}
+div#links a:hover {color: #411; background: #AAA;
+   border-right: 5px double white;}
+   div#content {
+	position: absolute;
+	top: 14px;
+	left: 138px;
+	right: 25px;
+	color: #BAA;
+	background: #22232F;
+	font: 13px Verdana, sans-serif;
+	padding: 10px;
+	border: solid 5px #444;
+}
+div#content p {margin: 0 1em 1em;}
+div#content h3 {margin-bottom: 0.25em;}
+
+h1 {margin: -9px -9px 0.5em; padding: 15px 0 5px; text-align: right; background: #333; color: #667; letter-spacing: 0.5em; text-transform: lowercase; font: bold 25px sans-serif; height: 28px; vertical-align: middle; white-space: nowrap;}
+dt {font-weight: bold;}
+dd {margin-bottom: 0.66em;}
+div#content a:link {color: white;}
+div#content a:visited {color: #BBC;}
+div#content a:link:hover {color: #FF0;}
+div#content a:visited:hover {color: #CC0;}
+code, pre {color: #EDC; font: 110% monospace;}
+
+
+</style>
+<H1 align=center>Il gioco del Memory </H1>
+
+
+
+
+<!-- DEBUT DU SCRIPT -->
+<SCRIPT LANGUAGE="JavaScript">
+
+imgLoaded = 0;
+CountAffichImg = new Array;
+PathImg = new Array;
+PassVerif = 0;
+ImgRecord = new Array;
+a1 = new Image;
+a2 = new Image;
+a2.src = 'images/couple_cache.jpg';
+function loadImg()
+	{
+	a1.src = "images/mem_1.gif";
+	CountImg();
+	a1.src = "images/mem_2.gif";
+	CountImg();
+	a1.src = "images/mem_3.gif";
+	CountImg();
+	a1.src = "images/mem_4.gif";
+	CountImg();
+	a1.src = "images/mem_5.gif";
+	CountImg();
+	a1.src = "images/mem_6.gif";
+	CountImg();
+	a1.src = "images/mem_7.gif";
+	CountImg();
+	a1.src = "images/mem_8.gif";
+	CountImg();
+	a1.src = "images/mem_9.gif";
+	CountImg();
+	a1.src = "images/mem_0.gif";
+	CountImg();
+	a1.src = "images/mem_10.gif";
+	CountImg();
+	a1.src = "images/mem_11.gif";
+	CountImg();
+	RandomMem('i11',11);
+	RandomMem('i12',12);
+	RandomMem('i13',13);
+	RandomMem('i14',14);
+	RandomMem('i15',15);
+	RandomMem('i16',16);
+	RandomMem('i21',21);
+	RandomMem('i22',22);
+	RandomMem('i23',23);
+	RandomMem('i24',24);
+	RandomMem('i25',25);
+	RandomMem('i26',26);
+	RandomMem('i31',31);
+	RandomMem('i32',32);
+	RandomMem('i33',33);
+	RandomMem('i34',34);
+	RandomMem('i35',35);
+	RandomMem('i36',36);
+	RandomMem('i41',41);
+	RandomMem('i42',42);
+	RandomMem('i43',43);
+	RandomMem('i44',44);
+	RandomMem('i45',45);
+	RandomMem('i46',46);
+	document.messMem.mess.value = "Trova gli accoppiamenti...";
+	}
+function CountImg()
+{
+PathImg[imgLoaded] = a1.src;
+CountAffichImg[imgLoaded] = 0;
+CountAffichImg[imgLoaded+12] = 0;
+imgLoaded++;
+return(true)
+}
+function RandomMem(imgName,ImgNb)
+	{
+	ImgTemp = Math.round(Math.random() * 11);
+	while (CountAffichImg[ImgTemp]>=2)
+		{
+		ImgTemp = Math.round(Math.random() * 11);
+		}
+	ImgRecord[ImgNb] = PathImg[ImgTemp];
+	CountAffichImg[ImgTemp]++;
+	return(true);
+	}
+count = 0;
+gagne=0;
+function AddClic(ImgNb,ImgName)
+{
+if (PassVerif == 0)
+	{
+	if (ImgName.src != a2.src)
+		{
+		alert('Errore');
+		}
+	else
+		{
+		ImgName.src = ImgRecord[ImgNb];
+		count++;
+		ImgNamey = ImgName;
+		if (count == 1)
+			{
+			ImgNb1=ImgNb;
+			ImgNamex=ImgNamey;
+			ImgURL1=ImgRecord[ImgNb];
+			}
+		else
+			{
+			PassVerif=1;
+			if (ImgRecord[ImgNb] == ImgURL1)
+				{
+				gagne++;
+				if (gagne > 1) s="s";
+				else s="";
+				document.messMem.mess.value = gagne + ' coppie' + ' trovate';
+				PassVerif = 0;
+				count=0;
+					if (gagne==12)
+					{
+					document.messMem.mess.value = "Bravo!"
+					}
+				}
+			else
+				{
+				document.messMem.mess.value = "Non è una coppia";
+				tempoMem2 = setTimeout("ImgNamey.src='images/couple_cache.jpg';ImgNamex.src='images/couple_cache.jpg';document.messMem.mess.value = 'Trova gli accoppiamenti';PassVerif = 0;", 1200);
+				count=0;
+				}
+			}
+	}
+}
+}
+ThisPage = location.href;
+</SCRIPT>
+<!-- FIN DU SCRIPT -->
+
+</head>
+<body >
+
+<br /><br />
+<div align="center">
+
+
+<A HREF="#" onClick="AddClic(11,i11);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i11 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(12,i12);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i12 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(13,i13);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i13 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(14,i14);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i14 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(15,i15);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i15 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(16,i16);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i16 HSPACE=15 VSPACE=5 BORDER=0></A><BR>
+<A HREF="#" onClick="AddClic(21,i21);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i21 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(22,i22);return(false)"><IMG SRC="images/couple_cache.jpg"WIDTH=120 HEIGHT=90 NAME=i22 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(23,i23);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i23 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(24,i24);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i24 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(25,i25);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i25 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(26,i26);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i26 HSPACE=15 VSPACE=5 BORDER=0></A><BR>
+<A HREF="#" onClick="AddClic(31,i31);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i31 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(32,i32);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i32 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(33,i33);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i33 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(34,i34);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i34 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(35,i35);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i35 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(36,i36);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i36 HSPACE=15 VSPACE=5 BORDER=0></A><BR>
+<A HREF="#" onClick="AddClic(41,i41);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i41 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(42,i42);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i42 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(43,i43);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i43 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(44,i44);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i44 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(45,i45);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i45 HSPACE=15 VSPACE=5 BORDER=0></A>
+<A HREF="#" onClick="AddClic(46,i46);return(false)"><IMG SRC="images/couple_cache.jpg" WIDTH=120 HEIGHT=90 NAME=i46 HSPACE=15 VSPACE=5 BORDER=0></A><BR>
+<FORM NAME="messMem"><INPUT TYPE=text SIZE=60 NAME="mess" VALUE="Caricamento..."><INPUT TYPE="button" NAME=reco VALUE="Ricomincia" onClick="location.href=ThisPage"></FORM></CENTER>
+<SCRIPT LANGUAGE="JavaScript">
+loadImg()
+</SCRIPT>
+
+
+</div>
+<br /><br /><br /><br /><br /><br />
+
+	
+<div id="links">
+<a href="homepage2.html">Home</a>
+<a href="iscrizione.html">Login</a>
+<a href="games.html">Giochi</a>
+
+<a href="../img_animate.html">Galleria</a>
+<a href="Calcolatice.html">Calcolatrice</a>
+<a href="info.html">Info</a>
+</div>
+
+</body>
+</html>

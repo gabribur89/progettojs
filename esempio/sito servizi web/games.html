@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<HEAD>
+<title>Il gioco dell'8</title>
+
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Vanessa Lumini Website</title>
+
+<style type="text/css">
+body {position: relative; background: black; margin: 0; padding: 0;}
+
+div#links {
+	position: absolute;
+	top: 129px;
+	left: 958px;
+	width: 166px;
+	height: 700px;
+	font: 16px Verdana, sans-serif;
+	z-index: 100;
+}
+div#links a {display: block; text-align: center; font: bold 1em sans-serif; 
+   padding: 5px 10px; margin: 0 0 1px; border-width: 0; 
+   text-decoration: none; color: #FFC; background: #444;
+   border-right: 5px solid #505050;}
+
+div#links a {display: block; text-align: center; font: bold 1em sans-serif; 
+   padding: 5px 10px; margin: 0 0 1px; border-width: 0; 
+   text-decoration: none; color: #FFC; background: #444;
+   border-right: 5px solid #505050;}
+div#links a:hover {color: #411; background: #AAA;
+   border-right: 5px double white;}
+   div#content {
+	position: absolute;
+	top: 14px;
+	left: 138px;
+	right: 25px;
+	color: #BAA;
+	background: #22232F;
+	font: 13px Verdana, sans-serif;
+	padding: 10px;
+	border: solid 5px #444;
+}
+div#content p {margin: 0 1em 1em;}
+div#content h3 {margin-bottom: 0.25em;}
+
+h1 {margin: -9px -9px 0.5em; padding: 15px 0 5px; text-align: right; background: #333; color: #667; letter-spacing: 0.5em; text-transform: lowercase; font: bold 25px sans-serif; height: 28px; vertical-align: middle; white-space: nowrap;}
+dt {font-weight: bold;}
+dd {margin-bottom: 0.66em;}
+div#content a:link {color: white;}
+div#content a:visited {color: #BBC;}
+div#content a:link:hover {color: #FF0;}
+div#content a:visited:hover {color: #CC0;}
+code, pre {color: #EDC; font: 110% monospace;}
+.bubblewrap{
+list-style-type:none;
+margin:0;
+padding:0;
+}
+</style>
+</head>
+
+<SCRIPT language=JavaScript>
+
+
+  var blankPosition
+  var totalMoves
+  var speak
+
+
+  var SIDE = 3
+  var SQUARES = SIDE*SIDE
+  var TILES = SQUARES-1
+
+  var GALLERY = ""
+
+  tile = new Array(SQUARES)
+  flag = new Array(SQUARES)
+  perm = new Array(SQUARES)
+
+
+  function zerofill( hh ) {
+
+
+    if ( hh < 10 ) return "0"+hh
+    else           return  ""+hh
+    }
+
+
+
+  for (var ii = 0; ii < TILES; ii++ ) {
+    tile[ii] = new Image(60,60)
+    tile[ii].src = GALLERY+"c"+zerofill(ii+1)+".gif"
+    }
+  tile[TILES] = new Image(60,60)
+  tile[TILES].src = GALLERY+"whitecell.gif"
+
+
+
+  function setFlags() {
+
+    for ( var ii = 0; ii < TILES; ii++ )
+      flag[ii] = true
+    }
+
+  function repaintPuzzle() {
+
+    for ( var ii = 0; ii < SQUARES; ii++ ) {
+      document.images[ii].src = tile[perm[ii]].src
+      document.forms[0].moves.value = totalMoves
+      }
+    }
+
+
+  function resetPuzzle() {
+
+    var ndx, ii
+
+    setFlags()
+
+
+    for ( ii = 0; ii < TILES; ii++ ){
+      while ( true ) {
+        ndx = Math.floor(TILES*Math.random())
+        if ( ndx < TILES && flag[ndx] ) break
+        }
+      flag[ndx] = false
+      perm[ii] = ndx
+      }
+    perm[TILES] = TILES
+    blankPosition = TILES
+    speak = true
+    totalMoves = 0 
+
+    repaintPuzzle()
+
+    }
+
+
+  function moveButton( xx, yy ) {
+
+    var blankX, blankY, tmp, tmpsrc, posn
+
+    blankX = Math.floor(blankPosition / SIDE)
+    blankY = blankPosition % SIDE
+
+//se la casella vuota è subito vicina alla casella
+// a(xx,yy), scambiale.
+
+    if ((xx - blankX)*(xx - blankX) + (yy - blankY)*(yy - blankY) == 1) {
+      posn = yy + SIDE*xx
+      tmp = perm[blankPosition]
+      tmpsrc = document.images[blankPosition].src
+      perm[blankPosition] = perm[posn]
+      document.images[blankPosition].src = document.images[posn].src
+      perm[posn] = tmp
+      document.images[posn].src = tmpsrc
+      blankPosition = posn
+
+      totalMoves += 1
+      document.forms[0].moves.value = totalMoves
+
+      checkSolution()
+      }
+    else
+      alert( "Spiacente, non puoi muovere questa casella. " )
+    }
+
+
+  function checkSolution() {
+
+    var finished, msg
+
+    if ( blankPosition == TILES ) {
+      finished = true
+      for ( var ii = 0; ii < TILES-2; ii++ ) {
+        if ( ii != perm[ii] ) {
+          finished = false
+          break
+          }
+        }
+
+      if ( speak && finished ) {
+        if ( perm[TILES-2] == TILES-2 ) {
+          msg = "Grande ce l'hai fatta!!\n"
+          if ( document.forms[0].moves.value < 80 )
+            msg += "\nE in meno di 80 mosse!"
+          else
+            msg += "Complimenti vuoi rigiocare?"
+          confirm( msg )
+          }
+       
+        speak = false
+        }
+      }
+    }
+
+ 
+
+
+</SCRIPT>
+
+</HEAD>
+<BODY bgcolor="#f7f4ea" onLoad="resetPuzzle()">
+<p align="left">&nbsp;</p>
+
+<H1 align=center>Il gioco dell'8  </H1>
+<P align=center>&nbsp;</P>
+<P align=left>&nbsp;</P>
+<P align=center></P>
+<div align="center"><center>
+<SCRIPT language=JavaScript>
+
+  with ( document ) {
+    writeln('<TABLE BGCOLOR="#bc00ff" CELLPADDING=4>')
+    var kk = 0
+    for (var ii = 0; ii < SIDE; ii++ ) {
+      writeln('<TR>')
+      for (var jj = 0; jj < SIDE; jj++ ) {
+        writeln( '<TD><A HREF="javascript:void(0)" onClick="moveButton(',ii,',',jj,')">',
+            '<IMG SRC="',tile[kk++].src,'" ALIGN=TOP BORDER=0></A></TD>')
+        }
+      writeln('</TR>')
+      }
+    writeln('</TABLE>')
+    }
+</script>
+
+
+<FORM name=buttons>
+<P align=center>
+<INPUT onClick="resetPuzzle()"
+ type=button value=" Rimescola">
+</P>
+<P align=center>Mosse: 
+  <INPUT size=6 value=0 name=moves> </P>
+  </FORM>
+<P align=center>&nbsp;</P>
+
+
+
+</center>
+<div id="links">
+<a href="homepage2.html">Home</a>
+<a href="front.html">Login</a>
+<a href="games.html">Giochi</a>
+
+<a href="../img_animate.html">Galleria</a>
+<a href="Calcolatice.html">Calcolatrice</a>
+<a href="info.html">Info</a>
+<a href="memoryscaricato.html">Memory</a>
+</div>
+
+
+
+
+
+</body>
+</html>
+</body>
+
+
