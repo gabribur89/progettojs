@@ -4,6 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- per localstorage -->
+	<script src=js/extendLocalStorage.js></script>
 	<!-- Uso un font da google -->
 	<link href="https://fonts.googleapis.com/css?family=Dokdo" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
@@ -14,114 +16,152 @@
   <body>
 	<div class="container">
 	<h1>Qui puoi registrarti al sito inserendo i dati nei relativi campi</h1>
-		<form>
-			  <div class="form-group">
-				<label for="nome">Nome</label>
-				<input type="nome" class="form-control" style="width:300px;" id="nome" placeholder="Inserisci il tuo nome">
-			  </div>
-			  <div class="form-group">
-				<label for="cognome">Cognome</label>
-				<input type="cognome" class="form-control" style="width:300px;" id="cognome" placeholder="Inserisci il tuo cognome">
-			  </div>
-			  <div class="form-group">
-				<label for="datanascita">Data di Nascita</label>
-				<input type="date" class="form-control" style="width:300px;" id="datanascita">
-			  </div>
-			  <div class="form-group">
-				<label for="indirizzo">Indirizzo</label>
-				<input type="indirizzo" class="form-control" style="width:300px;" id="indirizzo" placeholder="Inserisci il tuo indirizzo">
-			  </div>
-			  <div class="form-group">
-				<label for="citta">Città</label>
-				<input type="citta" class="form-control" style="width:300px;" id="citta" placeholder="Inserisci la tua città">
-			  </div>
-			  <div class="form-group">
-				<label for="cap">CAP</label>
-				<input type="cap" class="form-control" style="width:300px;" id="cap" placeholder="Inserisci il tuo CAP">
-			  </div>
-			  <div class="form-group">
-				<label for="mail">E-mail</label>
-				<input type="mail" class="form-control" style="width:300px;" id="mail" placeholder="Inserisci e-mail">
-			  </div>
-			  <div class="form-group">
-				<label for="password">Password</label>
-				<input type="password" class="form-control" style="width:300px;" id="password" placeholder="Inserisci la password">
-			  </div>
-			  <div class="form-group">
-				<label for="password">Conferma Password</label>
-				<input type="password" class="form-control" style="width:300px;" id="password1" placeholder="Conferma la password di prima">
-			  </div>
-			  <div class="container">
-				 <div class="row">
-						<div class="col-sm">
-						  <div class="dropdown">
-							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSfondo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Colore dello Sfondo
-							  </button>
-							  <div id="sfondo" class="dropdown-menu" aria-labelledby="dropdownSfondo">
-								<a class="dropdown-item" href="#" id="rosso">Rosso</a>
-								<a class="dropdown-item" href="#" id="blue">Blu</a>
-								<a class="dropdown-item" href="#" id="giallo">Giallo</a>
+		<div class="row">
+			<div class="col-md-8 order-2" id="BodyReg">
+				<form>
+					  <div class="form-group">
+						<label for="nome">Nome</label>
+						<input type="nome" class="form-control" style="width:300px;" id="nome" placeholder="Inserisci il tuo nome">
+					  </div>
+					  <div class="form-group">
+						<label for="cognome">Cognome</label>
+						<input type="cognome" class="form-control" style="width:300px;" id="cognome" placeholder="Inserisci il tuo cognome">
+					  </div>
+					  <div class="form-group">
+						<label for="datanascita">Data di Nascita</label>
+						<input type="date" class="form-control" style="width:300px;" id="datanascita">
+					  </div>
+					  <div class="form-group">
+						<label for="indirizzo">Indirizzo</label>
+						<input type="indirizzo" class="form-control" style="width:300px;" id="indirizzo" placeholder="Inserisci il tuo indirizzo">
+					  </div>
+					  <div class="form-group">
+						<label for="citta">Città</label>
+						<input type="citta" class="form-control" style="width:300px;" id="citta" placeholder="Inserisci la tua città">
+					  </div>
+					  <div class="form-group">
+						<label for="cap">CAP</label>
+						<input type="cap" class="form-control" style="width:300px;" id="cap" placeholder="Inserisci il tuo CAP">
+					  </div>
+					  <div class="form-group">
+						<label for="mail">E-mail</label>
+						<input type="mail" class="form-control" style="width:300px;" id="mail" placeholder="Inserisci e-mail">
+					  </div>
+					  <div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" style="width:300px;" id="password" placeholder="Inserisci la password">
+					  </div>
+					  <div class="form-group">
+						<label for="password">Conferma Password</label>
+						<input type="password" class="form-control" style="width:300px;" id="password1" placeholder="Conferma la password di prima">
+					  </div>
+					  <div class="container">
+						 <div class="row">
+								<div class="col-sm">
+								  <div class="dropdown">
+									  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSfondo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Colore dello Sfondo
+									  </button>
+									  <div id="sfondo" class="dropdown-menu" aria-labelledby="dropdownSfondo">
+										<a class="dropdown-item" href="#" id="rosso">Rosso</a>
+										<a class="dropdown-item" href="#" id="blue">Blu</a>
+										<a class="dropdown-item" href="#" id="giallo">Giallo</a>
+									  </div>
+								  </div>
+								</div>
+							  <div class="col-sm">
+								  <div class="dropdown">
+									  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownDim" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Dimensione Carattere
+									  </button>
+									  <div id="dimensione" class="dropdown-menu" aria-labelledby="dropdownDim">
+										<a class="dropdown-item" href="#" id="12px">12px</a>
+										<a class="dropdown-item" href="#" id="14px">14px</a>
+										<a class="dropdown-item" href="#" id="16px">16px</a>
+										<a class="dropdown-item" href="#" id="24px">24px</a>
+									  </div>
+								  </div>
 							  </div>
-						  </div>
-						</div>
-					  <div class="col-sm">
-						  <div class="dropdown">
-							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownDim" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Dimensione Carattere
-							  </button>
-							  <div id="dimensione" class="dropdown-menu" aria-labelledby="dropdownDim">
-								<a class="dropdown-item" href="#" id="12px">12px</a>
-								<a class="dropdown-item" href="#" id="14px">14px</a>
-								<a class="dropdown-item" href="#" id="16px">16px</a>
-								<a class="dropdown-item" href="#" id="24px">24px</a>
+							  <div class="col-sm">
+								  <div class="dropdown">
+									  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownFont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Tipo Carattere
+									  </button>
+									  <div id="tipo" class="dropdown-menu" aria-labelledby="dropdownFont">
+										<a class="dropdown-item" href="#" id="times" >Times New Roman</a>
+										<a class="dropdown-item" href="#" id="arial" >Arial</a>
+										<a class="dropdown-item" href="#" id="dokdo" >Dokdo</a>
+										<a class="dropdown-item" href="#" id="indie" >Indie Flower</a>
+									  </div>
+								  </div>
+							  </div>
+							  <div class="col-sm">
+								  <div class="dropdown">
+									  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Colore Carattere
+									  </button>
+									  <div id="colore" class="dropdown-menu" aria-labelledby="dropdownCar">
+										<a class="dropdown-item" href="#" id="arancione">Arancione</a>
+										<a class="dropdown-item" href="#" id="nero">Nero</a>
+										<a class="dropdown-item" href="#"id="rosso">Rosso</a>
+									  </div>
+								  </div>
+							  </div>
+							  <div class="col-sm">
+								  <div class="dropdown">
+									  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownPos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Posizione Menù del Sito
+									  </button>
+									  <div id="posizione" class="dropdown-menu" aria-labelledby="dropdownPos">
+										<a class="dropdown-item" href="#" id="sx">Sinistra</a>
+										<a class="dropdown-item" href="#" id ="dx">Destra</a>
+									  </div>
+								  </div>
 							  </div>
 						  </div>
 					  </div>
-					  <div class="col-sm">
-						  <div class="dropdown">
-							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownFont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Tipo Carattere
-							  </button>
-							  <div id="tipo" class="dropdown-menu" aria-labelledby="dropdownFont">
-								<a class="dropdown-item" href="#" id="times" >Times New Roman</a>
-								<a class="dropdown-item" href="#" id="arial" >Arial</a>
-								<a class="dropdown-item" href="#" id="dokdo" >Dokdo</a>
-								<a class="dropdown-item" href="#" id="indie" >Indie Flower</a>
-							  </div>
-						  </div>
-					  </div>
-					  <div class="col-sm">
-						  <div class="dropdown">
-							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Colore Carattere
-							  </button>
-							  <div id="colore" class="dropdown-menu" aria-labelledby="dropdownCar">
-								<a class="dropdown-item" href="#" id="bianco">Bianco</a>
-								<a class="dropdown-item" href="#" id="nero">Nero</a>
-								<a class="dropdown-item" href="#"id="rosso">Rosso</a>
-							  </div>
-						  </div>
-					  </div>
-					  <div class="col-sm">
-						  <div class="dropdown">
-							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownPos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Posizione Menù del Sito
-							  </button>
-							  <div id="posizione" class="dropdown-menu" aria-labelledby="dropdownPos">
-								<a class="dropdown-item" href="#">Sinistra</a>
-								<a class="dropdown-item" href="#">Destra</a>
-							  </div>
-						  </div>
-					  </div>
-				  </div>
-			  </div>
-			  <br>
-			  <button type="submit" class="btn btn-primary">Registrati!</button>
+					  <br>
+					  <button type="submit" class="btn btn-primary" id="registrati">Registrati!</button>
 
-		</form>
+				</form>
+			</div>
+			<!-- MENU CHE VIENE SCELTO DALL'UTENTE-->
+			<div class="col-md-4 order-1" id="MenuReg">
+				<nav class="nav flex-column">
+				  <a class="nav-link active" href="#">Slide Show</a>
+				  <a class="nav-link" href="#">8 Puzzle Game</a>
+				  <a class="nav-link" href="#">Memory Game</a>
+				  <a class="nav-link" href="#">Calcolatrice</a>
+				</nav>
+			</div>
+			<!---->
+		</div>
 		<a href="index.html">Torna alla home</a>
 	</div>
+	
+	<!-- MODAL UTENTE REGISTRATO -->
+		<!-- Modal -->
+		  <div class="modal fade" id="modal" role="dialog">
+			<div class="modal-dialog">
+			
+			  <!-- Modal content-->
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h4 class="modal-title">Complimenti!</h4>
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+				  <p>Utente registrato correttamente!</p>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+				</div>
+			  </div>
+			  
+			</div>
+		  </div>
+	<!-- -->
+  
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -130,19 +170,28 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script>
 	$(document).ready(function(){
-		$('#sfondo a').click(function () {
+	
+			var bg;
+			var dm;
+			var tp;
+			var col;
+			
+			$('#sfondo a').click(function () {
 			 // sostuisci il node del menu con la selezione
 			 var color = $(this).attr('id'); 
-			 $('#dropdownSfondo').text(color); 
+			 //$('#dropdownSfondo').text(color); 
 			 switch(color){
 				case "rosso":
-					$('body').css("background-color", "red");             
+					$('body').css("background-color", "red");   
+					bg = 'red';
 					break;
 				case "blue":
-					$('body').css("background-color", "blue");             
+					$('body').css("background-color", "blue");
+					bg ='blue';
 					break;
 				case "giallo":
-					$('body').css("background-color", "#FFFF00");             
+					$('body').css("background-color", "#FFFF00");
+					bg ='#FFFF00';
 					break;
 			 }
 		});
@@ -150,19 +199,23 @@
 		$('#dimensione a').click(function () {
 			 // sostuisci il node del menu con la selezione
 			 var dim = $(this).attr('id'); 
-			 $('#dropdownDim').text(dim); 
+			 //$('#dropdownDim').text(dim); 
 			 switch(dim){
 				case "12px":
-					$('body').css("font-size", "12px");             
+					$('body').css("font-size", "12px"); 
+					dm = '12px';
 					break;
 				case "14px":
-					$('body').css("font-size", "14px");             
+					$('body').css("font-size", "14px");
+					dm = '14px';
 					break;
 				case "16px":
-					$('body').css("font-size", "16px");             
+					$('body').css("font-size", "16px"); 
+					dm = '16px';
 					break;
 				case "24px":
-					$('body').css("font-size", "24px");             
+					$('body').css("font-size", "24px"); 
+					dm = '24px';
 					break;
 			 }
 		});
@@ -170,20 +223,24 @@
         $('#tipo a').click(function () {
              // sostuisci il node del menu con la selezione
              var font = $(this).attr('id'); 
-             $('#dropdownFont').text(font); 
+             //$('#dropdownFont').text(font); 
              // modifca al volo in background , non funziona ancora
              switch(font){
                 case "times":
-                    $('body').css("font-family", "Times New Roman");             
+                    $('body').css("font-family", "Times New Roman");
+					tp = 'Times New Roman';
                     break;
                 case "arial":
-                    $('body').css("font-family", "Arial");             
+                    $('body').css("font-family", "Arial"); 
+					tp = 'Arial';
                     break;
 				case "dokdo":
 					$('body').css("font-family", "'Dokdo', cursive");
+					tp = "'Dokdo', cursive";
 					break;
 				case "indie":
 					$('body').css("font-family", "'Indie Flower', cursive");
+					tp = "'Indie Flower', cursive";
 					break;
              }
         });
@@ -191,20 +248,64 @@
         $('#colore a').click(function () {
              // sostuisci il node del menu con la selezione
              var car = $(this).attr('id'); 
-             $('#dropdownCar').text(car); 
+             //$('#dropdownCar').text(car); 
              // modifca al volo in background , non funziona ancora
              switch(car){
-                case "bianco":
-                    $('body').css("color", "white");             
+                case "arancione":
+                    $('body').css("color", "orange"); 
+					col = 'orange';
                     break;
                 case "nero":
-                    $('body').css("color", "black");             
+                    $('body').css("color", "black");    
+					col = 'black';
                     break;
 				case "rosso":
 					$('body').css("color", "red");
+					col = 'red';
 					break;
              }
         });
+		
+		$('#posizione a').click(function () {
+			var pos = $(this).attr('id');
+			
+			switch(pos){
+				case "sx":
+					$('#BodyReg').removeClass("order-2").addClass("order-1");
+					break;
+				case "dx":
+					$('#MenuReg').removeClass("order-1").addClass("order-2");
+					break;
+			}
+		});
+		
+		$('#registrati').click(function () {
+		
+			//recupero le credenziali
+			var userval = $('#mail').val();
+			var pwdval = $('#password').val();
+			
+			
+			localStorage.setItem('user', JSON.stringify({
+				
+				username: userval,
+				pwd: pwdval
+				
+			}));
+			
+			/*localStorage.set(user,pwd);
+			localStorage.set("background",bg);
+			localStorage.set("dimension",dm);
+			localStorage.set("type",tp);
+			localStorage.set("color",col);*/
+			
+			//console.log(localStorage.get("background"));
+			$("#modal").modal();
+			//da risolvere reload pagina index
+			//window.location.replace("index.html");
+			
+		});
+		
 	});
 	
 	</script>
