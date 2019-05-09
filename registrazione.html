@@ -175,6 +175,8 @@
 			var dm;
 			var tp;
 			var col;
+			var posMenu;
+			
 			
 			$('#sfondo a').click(function () {
 			 // sostuisci il node del menu con la selezione
@@ -271,33 +273,45 @@
 			
 			switch(pos){
 				case "sx":
-					$('#BodyReg').removeClass("order-2").addClass("order-1");
+					$('#MenuReg').removeClass("order-2").addClass("order-1");
+					$('#BodyReg').removeClass("order-1").addClass("order-2");
+					posMenu = "sx";
 					break;
 				case "dx":
+					$('#BodyReg').removeClass("order-2").addClass("order-1");
 					$('#MenuReg').removeClass("order-1").addClass("order-2");
+					posMenu = "dx";
 					break;
 			}
 		});
 		
 		$('#registrati').click(function () {
 		
-			//recupero le credenziali
+			//recupero le credenziali dal form
 			var userval = $('#mail').val();
 			var pwdval = $('#password').val();
-			
 			
 			localStorage.setItem('user', JSON.stringify({
 				
 				username: userval,
-				pwd: pwdval
+				pwd: pwdval,
+				background: bg,
+				dimension: dm,
+				type: tp,
+				color: col,
+				menu: posMenu
 				
 			}));
+			
+			
 			
 			/*localStorage.set(user,pwd);
 			localStorage.set("background",bg);
 			localStorage.set("dimension",dm);
 			localStorage.set("type",tp);
-			localStorage.set("color",col);*/
+			localStorage.set("color",col);
+			localStorage.set("menu",posMenu);
+			localStorage.set("body",posBody);*/
 			
 			//console.log(localStorage.get("background"));
 			$("#modal").modal();

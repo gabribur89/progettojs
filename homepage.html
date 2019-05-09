@@ -14,7 +14,16 @@
 	<h1>Ciao, <b id="name"></b>! Benvenuto nella Homepage!</h1>
 
 	a seconda del posizionamento impostato dalla registrazione, si vedrà il menù
-	
+	<!-- MENU CHE VIENE SCELTO DALL'UTENTE-->
+		<div class="col-md-4 order-1" id="MenuReg">
+			<nav class="nav flex-column">
+			  <a class="nav-link active" href="#">Slide Show</a>
+			  <a class="nav-link" href="#">8 Puzzle Game</a>
+			  <a class="nav-link" href="#">Memory Game</a>
+			  <a class="nav-link" href="#">Calcolatrice</a>
+			</nav>
+		</div>
+	<!---->
 	</div>
 
     <!-- Optional JavaScript -->
@@ -24,16 +33,26 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
 	<script>
+	
+	function applicaPreferenze(){
+		var user = JSON.parse(localStorage.getItem('user'));
+		$('#name').html(user.username);
+		console.log(user);
+		$('body').css("background-color", user.background);
+		$('body').css("font-size", user.dimension);
+		$('body').css("font-family", user.type); 
+		$('body').css("color", user.color);
+		$('body').css(user.menu);
+	}	
+	
 	$(document).ready(function(){
+	
 		if (localStorage.getItem('user') === null)
 			{
 				alert("errore");
 			}
 		else
-			{
-				var user = JSON.parse(localStorage.getItem('user'));
-				$('#name').html(user.username);
-			}
+			applicaPreferenze();
 	});
 	</script>
   
