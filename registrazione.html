@@ -275,35 +275,64 @@
 				case "sx":
 					$('#MenuReg').removeClass("order-2").addClass("order-1");
 					$('#BodyReg').removeClass("order-1").addClass("order-2");
-					posMenu = "sx";
+					posMenu = "sin";
 					break;
 				case "dx":
 					$('#BodyReg').removeClass("order-2").addClass("order-1");
 					$('#MenuReg').removeClass("order-1").addClass("order-2");
-					posMenu = "dx";
+					posMenu = "des";
 					break;
 			}
 		});
+		
+		function confermaPassword(){
+			var pwd = $('#password').val();
+			var pwd1 = $('#password1').val();
+			
+			if (pwd1 != pwd)
+			{
+				alert ("errore, le password non corrispondono!");
+				return false;
+			}
+			
+			return true; 
+		}
+		
+		function validateEmail(mail) {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			
+			return re.test(String(mail).toLowerCase());
+		}
 		
 		$('#registrati').click(function () {
 		
 			//recupero le credenziali dal form
 			var userval = $('#mail').val();
 			var pwdval = $('#password').val();
+			var mail = $('#mail').val();
 			
-			localStorage.setItem('user', JSON.stringify({
-				
-				username: userval,
-				pwd: pwdval,
-				background: bg,
-				dimension: dm,
-				type: tp,
-				color: col,
-				menu: posMenu
-				
-			}));
+			if ((!validateEmail(mail)) && (confermaPassword() == true))
+			{
+				alert("Devi controllare bene i campi inseriti(mail e password/conferma password)");
+			}
+			//cercare di fare il confronto if
 			
+			else
 			
+			{
+				localStorage.setItem('user', JSON.stringify({
+					
+					username: userval,
+					pwd: pwdval,
+					background: bg,
+					dimension: dm,
+					type: tp,
+					color: col,
+					menu: posMenu
+					
+				}));
+			
+			}
 			
 			/*localStorage.set(user,pwd);
 			localStorage.set("background",bg);
