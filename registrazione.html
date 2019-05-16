@@ -46,6 +46,7 @@
 					  <div class="form-group">
 						<label for="mail">E-mail</label>
 						<input type="mail" class="form-control" style="width:300px;" id="mail" placeholder="Inserisci e-mail">
+						<!-- <div id="mailerror"></div> -->
 					  </div>
 					  <div class="form-group">
 						<label for="password">Password</label>
@@ -141,13 +142,36 @@
 	
 	<!-- MODAL UTENTE REGISTRATO -->
 		<!-- Modal -->
-		  <div class="modal fade" id="modal" role="dialog">
+		  <div class="modal fade" id="modal_okreg" role="dialog">
 			<div class="modal-dialog">
 			
 			  <!-- Modal content-->
 			  <div class="modal-content">
 				<div class="modal-header">
 				  <h4 class="modal-title">Complimenti!</h4>
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+				  <p>Utente registrato correttamente!</p>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+				</div>
+			  </div>
+			  
+			</div>
+		  </div>
+	<!-- -->
+	
+	<!-- MODAL ERRORI -->
+		<!-- Modal -->
+		  <div class="modal fade" id="modal_avviso2" role="dialog">
+			<div class="modal-dialog">
+			
+			  <!-- Modal content-->
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h4 class="modal-title">Attenzione!</h4>
 				  <button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
@@ -313,7 +337,9 @@
 			
 			if ((!validateEmail(mail)) && (confermaPassword() == true))
 			{
+				//modal_avviso2
 				alert("Devi controllare bene i campi inseriti(mail e password/conferma password)");
+				//$("#mailerror").text("email non corretta");
 			}
 			//cercare di fare il confronto if
 			
@@ -331,6 +357,8 @@
 					menu: posMenu
 					
 				}));
+				
+				$("#modal_okreg").modal();
 			
 			}
 			
@@ -343,7 +371,6 @@
 			localStorage.set("body",posBody);*/
 			
 			//console.log(localStorage.get("background"));
-			$("#modal").modal();
 			//da risolvere reload pagina index
 			//window.location.replace("index.html");
 			
