@@ -9,7 +9,7 @@ Slide Show -> slideshow.html
 
 8 Puzzle -> 8puzzle.html
 
-Memory -> memory.html
+Memory -> memorygame.html
 
 Calcolatrice -> calcolatrice.html
 
