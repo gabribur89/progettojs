@@ -1,0 +1,18 @@
+homepage
+
+
+in alto "Ciao Username!"
+
+Menu:
+
+Slide Show -> slideshow.html
+
+8 Puzzle -> 8puzzle.html
+
+Memory -> memory.html
+
+Calcolatrice -> calcolatrice.html
+
+
+
+tasto ESCI -> che fa logout
