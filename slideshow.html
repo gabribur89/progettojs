@@ -16,13 +16,21 @@
 				<div class="col-md-8 order-2">
 					<form>
 						<div class="form-group">
-							<label for="image">scegli le tue immagini!</label>
-							<input type="file" class="form-control" style="width:300px;" id="uploadimg" multiple>
+							<label for="image"><b>IMG N°1</b></label>
+							<input type="file" class="form-control" style="width:300px;" id="uploadimg1">
 						</div>
 						<div class="form-group">
-							<label for="tempo">Imposta tempo</label>
+							<label for="image"><b>IMG N°2</b></label>
+							<input type="file" class="form-control" style="width:300px;" id="uploadimg2">
+						</div>
+						<div class="form-group">
+							<label for="image"><b>IMG N°3</b></label>
+							<input type="file" class="form-control" style="width:300px;" id="uploadimg3">
+						</div>
+						<div class="form-group">
+							<label for="tempo">Imposta tempo (in millisecondi)</label>
 							<input type="text" class="form-control" style="width:300px;" id="tempo" placeholder="Imposta l'intervallo di tempo.... (ms)">
-							<button id="set_tempo" type="button" class="btn btn-primary">Imposta Tempo (in millisecondi)</button>
+							<button id="set_tempo" type="button" class="btn btn-primary">Imposta Tempo</button>
 						</div>
 					</form>
 					<!-- CAROUSEL -->
@@ -34,13 +42,13 @@
 							</ol>
 							  <div class="carousel-inner">
 									<div class="carousel-item active">
-									  <img class="d-block w-10" src="img/07_vietti_barbera_dAsti_tre_vigne.jpg" alt="First slide">
+									  <img id="img1" class="d-block w-10" src="" alt="First slide" width="200px" height="200px">
 									</div>
 									<div class="carousel-item">
-										<img class="d-block w-10" src="img/alisia.jpg" alt="Second slide">
+										<img id="img2" class="d-block w-10" src="" alt="Second slide" width="200px" height="200px">
 									</div>
 									<div class="carousel-item">
-										<img class="d-block w-10" src="img/bartolini-pallet.png" alt="Third slide">
+										<img id="img3" class="d-block w-10" src="" alt="Third slide" width="200px" height="200px">
 									</div>
 							  </div>
 								  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -85,7 +93,19 @@ $(document).ready(function(){
 		  opt.interval= 10000;
 		  c.data({options: opt})
 	 });*/
-	 
+	
+	$('#uploadimg1').change( function(event) {
+		$("#img1").attr('src',URL.createObjectURL(event.target.files[0]));
+	});
+	
+	$('#uploadimg2').change( function(event) {
+		$("#img2").attr('src',URL.createObjectURL(event.target.files[0]));
+	});
+	
+	$('#uploadimg3').change( function(event) {
+		$("#img3").attr('src',URL.createObjectURL(event.target.files[0]));
+	});
+	
 	$('#set_tempo').click(function () {
 		const options = $("#carouselobj").data()['bs.carousel']["_config"];
 		//options.interval = 10000;
