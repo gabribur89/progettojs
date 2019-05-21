@@ -22,7 +22,7 @@
 						<div class="form-group">
 							<label for="tempo">Imposta tempo</label>
 							<input type="text" class="form-control" style="width:300px;" id="tempo" placeholder="Imposta l'intervallo di tempo....">
-							<button id="set_tempo" type="submit" class="btn btn-primary">Imposta Tempo</button>
+							<button id="set_tempo" type="button" class="btn btn-primary">Imposta Tempo</button>
 						</div>
 					</form>
 					<!-- CAROUSEL -->
@@ -53,8 +53,8 @@
 								  </a>
 						</div>
 					<!---->
-					<button id="start" type="submit" class="btn btn-primary">Start SlideShow</button>
-					<button id="stop" type="submit" class="btn btn-primary">Stop SlideShow</button>
+					<button id="start" type="button" class="btn btn-primary">Start SlideShow</button>
+					<button id="stop" type="button" class="btn btn-primary">Stop SlideShow</button>
 				</div>
 			</div>
 	</div>
@@ -67,16 +67,29 @@
 <script>
 $(document).ready(function(){
 
-	 /*$('.carousel').carousel({
-	  interval: 5000
+	 /*$('#carouselExampleIndicators').carousel({
+	  interval: 2000
 	 });*/
 	 
-	 $('#set_tempo').click(function () {
+	 //$('#set_tempo').click(function () {
 		//console.log($('#tempo').val());
-		alert("aaaa");
+		//alert("aaaa");
 		//console.log($('#carouselExampleIndicators').attr());
-		$('.carousel').attr("data-interval","10000");
-	 });
+		//$('.carousel').attr("data-interval","10000");
+		/*$('.carousel').carousel({
+			interval : 10000
+		});*/
+		//alert("cccc");
+		 /* c = $('#carouselExampleIndicators')
+		  opt = c.data()['bs.carousel'].options
+		  opt.interval= 10000;
+		  c.data({options: opt})
+	 });*/
+	 
+	$('#set_tempo').click(function () {
+		const options = $("#carouselExampleIndicators").data()['bs.carousel']["_config"];
+		options.interval = 10000;
+	});
 	 
 	 $('#start').click(function () {
 		$('.carousel').carousel()
@@ -86,9 +99,6 @@ $(document).ready(function(){
 		$('.carousel').carousel('pause')
 	 });
 	 
-	 
-	 
-
 	 
 });
 </script>  
