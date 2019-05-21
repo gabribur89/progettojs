@@ -10,7 +10,16 @@
 	<title>Benvenuto!</title>
   </head>
  <body>
- 
+ 			<div class="row">
+				<div class="col-md-8 order-2">
+					<form>
+						<div class="form-group">
+							<label for="image">scegli le tue immagini!</label>
+							<input type="file" class="form-control" style="width:300px;" id="uploadimg" multiple>
+						</div>
+					</form>
+				</div>
+			</div>
 	<!--PROVA CAROUSEL-->
 		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="2000">
 		  <ol class="carousel-indicators">
@@ -40,26 +49,37 @@
 		</div>
 				<button id="start">Start</button>
 				<button id="stop">Stop</button>
+				<button id="infofile">Info IMG</button>
 </body>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
- <script>
+<script>
+
 $(document).ready(function(){
- 
-	 $('.carousel').carousel({
-	  interval: 5000
-	 });
-	 
-	 $('#start').click(function () {
-		$('.carousel').carousel()
-	 });
-	 
-	 $('#stop').click(function () {
-		$('.carousel').carousel('pause')
-	 });
+	
+	$('.carousel').carousel({
+	interval: 5000
+	});
+
+	$('#start').click(function () {
+	$('.carousel').carousel()
+	});
+
+	$('#stop').click(function () {
+	$('.carousel').carousel('pause')
+	});
+	
+	$('#infofile').click(function(){
+
+		var info = $('#uploadimg').prop('files')[0];
+		var info2 = $('#uploadimg').val();
+		console.log(info);
+		//console.log(info2);
+		
+	});
 	 
 });
  
