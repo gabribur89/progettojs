@@ -73,7 +73,6 @@ $(document).ready(function(){
 	 
 	 //$('#set_tempo').click(function () {
 		//console.log($('#tempo').val());
-<<<<<<< HEAD
 		//alert("aaaa");
 		//console.log($('#carouselExampleIndicators').attr());
 		//$('.carousel').attr("data-interval","10000");
@@ -88,14 +87,14 @@ $(document).ready(function(){
 	 });*/
 	 
 	$('#set_tempo').click(function () {
-		const options = $("#carouselExampleIndicators").data()['bs.carousel']["_config"];
+		const options = $("#carouselobj").data()['bs.carousel']["_config"];
 		options.interval = 10000;
 	});
-=======
+
 		//console.log($('.carousel').attr('data-interval'));
-		$('.carousel').attr("data-interval",10000);
-	 });
->>>>>>> 5b7e31c3c386ea97964b630fc6d37c2b60ee79b4
+		//$('.carousel').attr("data-interval",10000);
+	 //});
+
 	 
 	 $('#start').click(function () {
 		$('.carousel').carousel()
@@ -104,11 +103,7 @@ $(document).ready(function(){
 	 $('#stop').click(function () {
 		$('.carousel').carousel('pause')
 	 });
-<<<<<<< HEAD
-	 
-	 
-=======
->>>>>>> 5b7e31c3c386ea97964b630fc6d37c2b60ee79b4
+
 });
 </script>  
 </html>
