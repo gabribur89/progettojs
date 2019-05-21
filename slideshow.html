@@ -22,15 +22,15 @@
 						<div class="form-group">
 							<label for="tempo">Imposta tempo</label>
 							<input type="text" class="form-control" style="width:300px;" id="tempo" placeholder="Imposta l'intervallo di tempo....">
-							<button id="set_tempo" type="submit" class="btn btn-primary">Imposta Tempo</button>
+							<button id="set_tempo" type="button" class="btn btn-primary">Imposta Tempo</button>
 						</div>
 					</form>
 					<!-- CAROUSEL -->
-						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="2000">
+						<div id="carouselobj" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="2000">
 							<ol class="carousel-indicators">
-								<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-								<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-								<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+								<li data-target="#carouselitem0" data-slide-to="0" class="active"></li>
+								<li data-target="#carouselitem1" data-slide-to="1"></li>
+								<li data-target="#carouselitem2" data-slide-to="2"></li>
 							</ol>
 							  <div class="carousel-inner">
 									<div class="carousel-item active">
@@ -53,8 +53,8 @@
 								  </a>
 						</div>
 					<!---->
-					<button id="start" type="submit" class="btn btn-primary">Start SlideShow</button>
-					<button id="stop" type="submit" class="btn btn-primary">Stop SlideShow</button>
+					<button id="start" type="button" class="btn btn-primary">Start SlideShow</button>
+					<button id="stop" type="button" class="btn btn-primary">Stop SlideShow</button>
 				</div>
 			</div>
 	</div>
@@ -73,9 +73,8 @@ $(document).ready(function(){
 	 
 	 $('#set_tempo').click(function () {
 		//console.log($('#tempo').val());
-		alert("aaaa");
-		//console.log($('#carouselExampleIndicators').attr());
-		$('.carousel').attr("data-interval","10000");
+		//console.log($('.carousel').attr('data-interval'));
+		$('.carousel').attr("data-interval",10000);
 	 });
 	 
 	 $('#start').click(function () {
@@ -85,11 +84,6 @@ $(document).ready(function(){
 	 $('#stop').click(function () {
 		$('.carousel').carousel('pause')
 	 });
-	 
-	 
-	 
-
-	 
 });
 </script>  
 </html>
