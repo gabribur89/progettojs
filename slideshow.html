@@ -26,11 +26,11 @@
 						</div>
 					</form>
 					<!-- CAROUSEL -->
-						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="2000">
+						<div id="carouselobj" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="2000">
 							<ol class="carousel-indicators">
-								<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-								<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-								<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+								<li data-target="#carouselitem0" data-slide-to="0" class="active"></li>
+								<li data-target="#carouselitem1" data-slide-to="1"></li>
+								<li data-target="#carouselitem2" data-slide-to="2"></li>
 							</ol>
 							  <div class="carousel-inner">
 									<div class="carousel-item active">
@@ -73,6 +73,7 @@ $(document).ready(function(){
 	 
 	 //$('#set_tempo').click(function () {
 		//console.log($('#tempo').val());
+<<<<<<< HEAD
 		//alert("aaaa");
 		//console.log($('#carouselExampleIndicators').attr());
 		//$('.carousel').attr("data-interval","10000");
@@ -90,6 +91,11 @@ $(document).ready(function(){
 		const options = $("#carouselExampleIndicators").data()['bs.carousel']["_config"];
 		options.interval = 10000;
 	});
+=======
+		//console.log($('.carousel').attr('data-interval'));
+		$('.carousel').attr("data-interval",10000);
+	 });
+>>>>>>> 5b7e31c3c386ea97964b630fc6d37c2b60ee79b4
 	 
 	 $('#start').click(function () {
 		$('.carousel').carousel()
@@ -98,8 +104,11 @@ $(document).ready(function(){
 	 $('#stop').click(function () {
 		$('.carousel').carousel('pause')
 	 });
+<<<<<<< HEAD
 	 
 	 
+=======
+>>>>>>> 5b7e31c3c386ea97964b630fc6d37c2b60ee79b4
 });
 </script>  
 </html>
