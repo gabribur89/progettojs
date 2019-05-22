@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Benvenuto!</title>
+  </head>
+<body>
+    <div class="container">
+	<h1>Calcolatrice</h1>
+		<div class="row">
+			<div class="col-sm" id="schermo">schermo</div>
+		</div>
+		<div class="row">
+			<div class="col-"><button id="pot2" style="width: 50px;">2^2</button></div>
+			<div class="col-"><button id="poty" style="width: 50px;">x^y</button></div>
+			<div class="col-"><button id="segno" style="width: 50px;">+/-</button></div>
+			<div class="col-"><button id="division" style="width: 50px;">/</button></div>
+		</div>
+		<div class="row">
+			<div class="col-"><button id="7" style="width: 50px;">7</button></div>
+			<div class="col-"><button id="8" style="width: 50px;">8</button></div>
+			<div class="col-"><button id="9" style="width: 50px;">9</button></div>
+			<div class="col-"><button id="add" style="width: 50px;">+</button></div>
+		</div>
+		<div class="row">
+			<div class="col-"><button id="4" style="width: 50px;">4</button></div>
+			<div class="col-"><button id="5" style="width: 50px;">5</button></div>
+			<div class="col-"><button id="6" style="width: 50px;">6</button></div>
+			<div class="col-"><button id="sottr" style="width: 50px;">-</button></div>
+		</div>
+		<div class="row">
+			<div class="col-"><button id="1" style="width: 50px;">1</button></div>
+			<div class="col-"><button id="2" style="width: 50px;">2</button></div>
+			<div class="col-"><button id="3" style="width: 50px;">3</button></div>
+			<div class="col-"><button id="molt" style="width: 50px;">*</button></div>
+		</div>
+		<div class="row">
+			<div class="col-"><button id="0" value="0" style="width: 50px;">0</button></div>
+			<div class="col-"><button id="punto" style="width: 50px;">.</button></div>
+			<div class="col-"><button id="canc" style="width: 50px;">C</button></div>
+			<div class="col-"><button id="ris" style="width: 50px;">=</button></div>
+		</div>
+		<a href="homepage.html">Torna alla Home</a>
+	</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+	$('#0').click(function () {
+		
+		var x = $('#0').val(); 
+		
+		alert(x);
+		document.getElementById('schermo').innerHTML = x;
+		
+	});
+});
+</script>
+</body>
+</html>
