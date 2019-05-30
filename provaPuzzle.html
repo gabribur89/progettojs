@@ -13,17 +13,17 @@
 	<div class="container">
 		<h1>8 Puzzle Game</h1>
 		<br>
-			<div class="row">
+			<div class="row" id="0">
 				<div class="col-" id="1"><img src="img/1.png"></div>
 				<div class="col-" id="2"><img src="img/2.png"></div>
 				<div class="col-" id="3"><img src="img/3.png"></div>
 			</div>
-			<div class="row">
+			<div class="row" id="1">
 				<div class="col-" id="4"><img src="img/4.png"></div>
 				<div class="col-" id="5"><img src="img/5.png"></div>
 				<div class="col-" id="6"><img src="img/6.png"></div>
 			</div>
-			<div class="row">
+			<div class="row" id="2">
 				<div class="col-" id="7"><img src="img/7.png"></div>
 				<div class="col-" id="8"><img src="img/8.png"></div>
 				<div class="col-" id="9"><img src="img/vuoto.png"></div>
@@ -39,11 +39,51 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
+
+// mescola i numeri    
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+// rinfreca matrice html
+function refreshtabella(a){
+
+    //console.log(a);
+    // itero gli elementi dell'array
+    for ( var i = 0 ; i < a.length ; i++ ){  
+        // id usato per la cella nell'html
+        var idcella = i+1;
+
+        if (a[i] == 9){
+            $("#"+idcella+" img" ).attr("src", "img/vuoto.png");
+        }
+        else{
+            //console.log("#"+idcella+" img"+" valore: "+a[i]);
+            $("#"+idcella+" img" ).attr("src", "img/"+a[i]+".png");
+        }
+    }
+}
+    
 $(document).ready(function(){
 
-	$('#1').click(function () {
-		alert("uno!");
+    var celle = ['1','2','3','4','5','6','7','8','9'];
+    
+    // inzia nuovo gioco
+	$('#nuovogioco').click(function () {
+        shuffle(celle);
+        refreshtabella(celle);
 	});
+
+    // click su di una cella 
+    $('.col-').click(function (){
+       var clickcella = $(this).attr('id');
+
+    });
+
 });
 </script>
 </html>
