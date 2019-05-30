@@ -31,7 +31,7 @@
 	</div>
 	<button id="nuovogioco" type="submit" class="btn btn-primary">Nuovo Gioco</button>
 	<br>
-	<label>numero mosse effettuate:<b></b></label>
+	<label>numero mosse effettuate:<b id="mosse"></b></label>
 </body>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -39,6 +39,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
+var contaclick = 0;
+
+var cellavuota = 9;
+
+var celle = ['1','2','3','4','5','6','7','8','9'];
 
 // mescola i numeri    
 function shuffle(a) {
@@ -60,6 +65,7 @@ function refreshtabella(a){
 
         if (a[i] == 9){
             $("#"+idcella+" img" ).attr("src", "img/vuoto.png");
+			cellavuota = idcella;
         }
         else{
             //console.log("#"+idcella+" img"+" valore: "+a[i]);
@@ -69,28 +75,70 @@ function refreshtabella(a){
 }
 
 function scambio(pos){
-
+	
     // funziona che controlla:
     // 1) la posizione subito a destra e a sinistra
     // 2) tre posizioni a destre e a sinistra 
-    // se in almeno una c'è l'elemento vuoto si può fare lo scambio quindi ritorno True 
+    // se in almeno una c'è l'elemento vuoto si può fare lo scambio
+	if (pos != cellavuota){
+		console.log("posizione:",pos);
+		console.log("cellavuota:",cellavuota);
+		console.log("pos+1:",pos+1);
+		console.log("pos-1:",pos-1);
+		console.log("pos-3:",pos-3);
+		console.log("pos+3:",pos+3);
+		if ((pos-1 == cellavuota) || (pos+1 == cellavuota) || (pos-3 == cellavuota) || (pos+3 == cellavuota))
+		{
+			var tmp = celle[pos-1];
+			celle[pos-1] = celle[cellavuota-1];
+			celle[cellavuota-1] = tmp;
+			cellavuota = pos;
+			console.log(celle);
+			refreshtabella(celle);
+			contaclick = contaclick + 1;
+			$('#mosse').html(contaclick);
+			grigliaOrdinata();
+		}
+	}
+	else {console.log("ho cliccato la cella vuota");}
 
 }
 
-$(document).ready(function(){
+function grigliaOrdinata(){
+	var ordinato = false;
+	for (var i=0; i<celle.length; i++)
+	{
+		if (i != 0)
+		{
+			if (celle[i] > celle[i-1])
+			{
+				ordinato = true;
+			}
+			else
+			{
+				ordinato = false;
+				break;
+			}
+		}
+	}
+	
+	return ordinato;
+}
 
-    var celle = ['1','2','3','4','5','6','7','8','9'];
+$(document).ready(function(){
     
     // inzia nuovo gioco
 	$('#nuovogioco').click(function () {
+		contaclick = 0;
+		$('#mosse').html(contaclick);
         shuffle(celle);
         refreshtabella(celle);
 	});
 
     // click su di una cella 
     $('.col-').click(function (){
-       var clickcella = $(this).attr('id');
-
+		var clickcella = $(this).attr('id');
+		scambio(Number(clickcella));
     });
 
 });
