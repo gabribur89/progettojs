@@ -13,6 +13,7 @@
 	<div class="container">
 		<h1>8 Puzzle Game</h1>
 		<br>
+		<label class="invisible" id="win">Complimenti, hai vinto!</label>
 			<div class="row" id="0">
 				<div class="col-" id="1"><img src="img/1.png"></div>
 				<div class="col-" id="2"><img src="img/2.png"></div>
@@ -44,6 +45,8 @@ var contaclick = 0;
 var cellavuota = 9;
 
 var celle = ['1','2','3','4','5','6','7','8','9'];
+
+//var celle = [];
 
 // mescola i numeri    
 function shuffle(a) {
@@ -97,14 +100,19 @@ function scambio(pos){
 			refreshtabella(celle);
 			contaclick = contaclick + 1;
 			$('#mosse').html(contaclick);
-			grigliaOrdinata();
+			//alert("aaa");
+			if (haiVinto())
+			{
+				$('#win').attr("class","visible");
+			};
+			//alert("bbb");
 		}
 	}
 	else {console.log("ho cliccato la cella vuota");}
 
 }
 
-function grigliaOrdinata(){
+function haiVinto(){
 	var ordinato = false;
 	for (var i=0; i<celle.length; i++)
 	{
@@ -121,7 +129,7 @@ function grigliaOrdinata(){
 			}
 		}
 	}
-	
+	//console.log(ordinato);
 	return ordinato;
 }
 
@@ -129,9 +137,10 @@ $(document).ready(function(){
     
     // inzia nuovo gioco
 	$('#nuovogioco').click(function () {
+		$('#win').attr("class","invisible");
 		contaclick = 0;
 		$('#mosse').html(contaclick);
-        shuffle(celle);
+        shuffle(celle);//commentare x velocizzare soluzione
         refreshtabella(celle);
 	});
 

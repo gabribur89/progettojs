@@ -13,53 +13,53 @@
 	<div class="container">
 		<h1>Memory Game</h1>
 		<br>
-			<div class="row">
-				<div class="col">1</div>
-				<div class="col">2</div>
-				<div class="col">3</div>
-				<div class="col">4</div>
+			<div class="row" id="0">
+				<div class="col" id="1"></div>
+				<div class="col" id="2"></div>
+				<div class="col" id="3"></div>
+				<div class="col" id="4"></div>
 			</div>
-			<div class="row">
-				<div class="col">5</div>
-				<div class="col">6</div>
-				<div class="col">7</div>
-				<div class="col">8</div>
+			<div class="row" id="1">
+				<div class="col" id="5"></div>
+				<div class="col" id="6"></div>
+				<div class="col" id="7"></div>
+				<div class="col" id="8"></div>
 			</div>
-			<div class="row">
-				<div class="col">9</div>
-				<div class="col">10</div>
-				<div class="col">11</div>
-				<div class="col">12</div>
+			<div class="row" id="2">
+				<div class="col" id="9"></div>
+				<div class="col" id="10"></div>
+				<div class="col" id="11"></div>
+				<div class="col" id="12"></div>
 			</div>
-			<div class="row">
-				<div class="col">13</div>
-				<div class="col">14</div>
-				<div class="col">15</div>
-				<div class="col">16</div>
+			<div class="row" id="3">
+				<div class="col" id="13"></div>
+				<div class="col" id="14"></div>
+				<div class="col" id="15"></div>
+				<div class="col" id="16"></div>
 			</div>
-			<div class="row">
-				<div class="col">17</div>
-				<div class="col">18</div>
-				<div class="col">19</div>
-				<div class="col">20</div>
+			<div class="row" id="4">
+				<div class="col" id="17"></div>
+				<div class="col" id="18"></div>
+				<div class="col" id="19"></div>
+				<div class="col" id="20"></div>
 			</div>
-			<div class="row">
-				<div class="col">21</div>
-				<div class="col">22</div>
-				<div class="col">23</div>
-				<div class="col">24</div>
+			<div class="row" id="5">
+				<div class="col" id="21"></div>
+				<div class="col" id="22"></div>
+				<div class="col" id="23"></div>
+				<div class="col" id="24"></div>
 			</div>
-			<div class="row">
-				<div class="col">25</div>
-				<div class="col">26</div>
-				<div class="col">27</div>
-				<div class="col">28</div>
+			<div class="row" id="6">
+				<div class="col" id="25"></div>
+				<div class="col" id="26"></div>
+				<div class="col" id="27"></div>
+				<div class="col" id="28"></div>
 			</div>
-			<div class="row">
-				<div class="col">29</div>
-				<div class="col">30</div>
-				<div class="col">31</div>
-				<div class="col">32</div>
+			<div class="row" id="7">
+				<div class="col" id="29"></div>
+				<div class="col" id="30"></div>
+				<div class="col" id="31"></div>
+				<div class="col" id="32"></div>
 			</div>
 	</div>
 	<button id="nuovogioco" type="submit" class="btn btn-primary">Nuovo Gioco</button>
@@ -84,9 +84,21 @@ effettuati. Prevedere il bottono di “Nuovo gioco” che rimescola le carte
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
-$(document).ready(function(){
-	$('#nuovogioco').click(function () {
-		/*Funzione per TIMER .... parte quando inizio un nuovo gioco*/
+
+//var celle = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32'];
+
+/*mescola i numeri    
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+*/
+
+function timer(){
+/*Funzione per TIMER .... parte quando inizio un nuovo gioco*/
 		var sec = 0;
 			function pad (val){ 
 				return val > 9 ? val : "0" + val;
@@ -95,7 +107,21 @@ $(document).ready(function(){
 				document.getElementById("secondi").innerHTML=pad(++sec%60);
 				document.getElementById("minuti").innerHTML=pad(parseInt(sec/60,10));
 			}, 1000);
-		
+}
+
+$(document).ready(function(){
+
+	$('.col').prepend('<img src="img/vuoto.png"/>');
+	
+	$('#nuovogioco').click(function () {
+		timer();
+		//shuffle(celle);
+	});
+	
+	// click su di una cella 
+    $('.col').click(function (){
+		var clickcella = $(this).attr('id');
+		console.log(clickcella);
 	});
 });
 </script>
