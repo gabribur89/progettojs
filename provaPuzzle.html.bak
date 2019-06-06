@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Benvenuto!</title>
+  </head>
+<body>
+	<div class="container" id="puzzle">
+		<h1>8 Puzzle Game</h1>
+		<br>
+			<div class="row" id="row1">
+				<div class="col-" id="1"><img src="img/1.png"></div>
+				<div class="col-" id="2"><img src="img/2.png"></div>
+				<div class="col-" id="3"><img src="img/3.png"></div>
+			</div>
+			<div class="row" id="row2">
+				<div class="col-" id="4"><img src="img/4.png"></div>
+				<div class="col-" id="5"><img src="img/5.png"></div>
+				<div class="col-" id="6"><img src="img/6.png"></div>
+			</div>
+			<div class="row" id="row3">
+				<div class="col-" id="7"><img src="img/7.png"></div>
+				<div class="col-" id="8"><img src="img/8.png"></div>
+				<div class="col-" id="9"><img src="img/vuoto.png"></div>
+			</div>
+	</div>
+	<button id="nuovogioco" type="submit" class="btn btn-primary">Nuovo Gioco</button>
+	<br>
+	<label>Tempo trascorso: <b><span id="minuti"></span>:<span id="secondi"></span></b></label>
+	<br>
+	<label>numero mosse effettuate:<b></b></label>
+	<br>
+	<button id="contariga1" type="submit" class="btn btn-primary">Conta elementi riga 1</button>
+	<br>
+	<h1>Scopo del gioco e’ partire da una situazione iniziale con i numeri disposti causalmente e, spostando
+				le caselle vicine a quella vuota, arrivare ad una situazione finale con le
+				caselle ordinate da 1 a 8 (casella vuota nella posizione in basso a
+				destra). Prevedere il bottono di “Nuovo gioco” che rimescola le caselle.
+				Nel caso di fine del gioco segnalare il numero di mosse effettuate.</h1>
+</body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+
+	/*$('#contariga1').click(function (){
+		var x = document.getElementById("row1").rows.length;
+		alert("la lunghezza della tabella è di" + x + "elementi");
+	});*/
+
+	$('#nuovogioco').click(function () {
+		/*Funzione per TIMER .... parte quando inizio un nuovo gioco*/
+		var sec = 0;
+			function pad (val){ 
+				return val > 9 ? val : "0" + val;
+			}
+			setInterval( function(){
+				document.getElementById("secondi").innerHTML=pad(++sec%60);
+				document.getElementById("minuti").innerHTML=pad(parseInt(sec/60,10));
+			}, 1000);
+		
+	});
+	
+	function newgame(){
+	}
+	
+	$('#1').click(function () {
+		alert("uno!");
+	});
+	/*$('#9').click(function () {
+		var f1 =document.getElementById('9');
+		var f2=document.getElementById('8');
+		var initialinner = f1.innerHTML;
+		f1.innerHTML=f2.innerHTML;
+		f2.innerHTML=initialinner;
+	});*/
+});
+</script>
+</html>

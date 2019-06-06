@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml">  
+<head>
+<title>Box Puzzle</title>
+<script type="text/javascript">
+<!--
+/******************************************************
+*  Author: Marco Malavasi (Malo)					  *
+*  This is a Javscript version of the 8 puzzle game.  *
+*													  *
+*  You are free to use it as you want!				  *
+*******************************************************/
+
+var pos= new Array("8","5","2","6","3","4","1","7",""); //vettore che rappresenta le caselle e i valori contenuti
+var vic= new Array("1","2","3","4","5","6","7","8",""); //vettore che rappresenta le caselle e i valori contenuti
+var blank,contmoss=0;
+
+/*******Funzione che mescola i valori numerici dell'array in modo casuale********/
+function shuffle()
+{
+	for (swaps=0; swaps<pos.length; swaps++) 
+	{
+		i = Math.floor(Math.random()*pos.length);
+		j = Math.floor(Math.random()*pos.length);
+		holder = pos[i];
+		pos[i] = pos[j];
+		pos[j]=holder;
+	}	
+	refresh();
+	contmoss=0;
+}
+
+/******Funzione che aggiorna tutte le caselle prendendo i valori dal vettore******/
+function refresh()		
+{
+	document.box.casella1.value=pos[0];
+	document.box.casella2.value=pos[1];
+	document.box.casella3.value=pos[2];
+	document.box.casella4.value=pos[3];
+	document.box.casella5.value=pos[4];
+	document.box.casella6.value=pos[5];
+	document.box.casella7.value=pos[6];
+	document.box.casella8.value=pos[7];
+	document.box.casella9.value=pos[8];
+}				
+
+/* *****Funzione che verifica se è possibile scambiare due caselle e se si lo effettua*****/
+function test(num)
+{
+	var flag=0,test=0;
+	var p=trova_pos(num); //cerco la posizione nel vettore della casella cliccata
+	if(p==-1) alert("Errore! Si prega di ricaricare la pagina.");
+	blank=trova_pos(""); //cerco la posizione della casella vuota
+    if(blank==-1) alert("Errore! Si prega di ricaricare la pagina.");
+	
+	if(p!=blank) //se non ho cliccato la casella vuota
+	{	
+		if(p < blank)  test=blank-p;  
+		else test=p-blank;
+	//alert(""+blank+"\n"+p+"\n"+test+"");
+		if(test==3)
+		{
+			scambia(blank,p);
+			flag=1;
+			contmoss++;
+		}
+		else if(test==1)
+		{
+			if((p==2)&&(blank==3)||(p==3)&&(blank==2)||(p==5)&&(blank==6)||(p==6)&&(blank==5))
+			{
+			return;
+			}
+			else 
+			{
+			scambia(blank,p);
+			flag=1;
+			contmoss++;
+			}
+
+		}
+		if(flag==1) 
+		{
+		   if(controlla_vittoria()) alert("Complimenti!!\nHai vinto effettuando "+contmoss+" mosse.\nFai 'Nuovo gioco' e migliora il tuo record!");
+		}
+	}
+	else return;
+}
+
+/*********************************************************************
+Funzione che confronta i valori dei due vettori e se sono tutti uguali 
+nel posto giusto decreta la vittoria
+**********************************************************************/
+function controlla_vittoria()
+{
+	for(var i=0; i<pos.length;i++)
+	{
+		if(pos[i]!=vic[i]) return false;
+	}
+	return true; //se i due vettori hanno le stesse configurazioni ritorno vero
+}
+
+/*******Funzione che dato un valore ne restituisce la posizione nell'array*******/
+function trova_pos(n)
+{
+	for(var i=0; i<pos.length;i++)
+	{
+		if(n==pos[i]) return i;
+	}
+	return -1;
+}
+
+/**********Funzione che scambia due elementi del vettore**********/
+function scambia(b,p)
+{
+	var temp;
+	temp=pos[b];
+	pos[b]=pos[p];
+	pos[p]=temp;
+	refresh();
+}
+
+-->
+</script>
+</head>
+  
+<body>
+<SCRIPT type="text/javascript">
+// questo script disabilita la selezione del mouse
+if (typeof document.onselectstart!="undefined") {
+  document.onselectstart=new Function ("return false");
+}
+else{
+  document.onmousedown=new Function ("return false");
+  document.onmouseup=new Function ("return true");
+}
+</SCRIPT>
+<div id="container">
+	<div id="content">
+		<center><h1>BOX PUZZLE</h1>
+		<p><br><br>The 8 puzzle game, made by Malo! Press "Nuovo gioco" to shuffle the grid and play a new game.<br>
+		Come and visit <a href="www.malomente.blogspot.it">malomente.blogspot.it</a> for more tutorials!</p>
+		<input type="button" name="newg" value="Nuovo gioco" onClick="shuffle()"><br><br>
+		<form name="box">
+		</center>
+		<table align="center">
+			<tr>
+				<td ><input name="casella1" value="8" onClick="test(this.value)" readonly style="text-align: center; width:50px; height:50px; background-color: green; border-style: solid; border-color: #800000"></td>
+				<td ><input name="casella2" value="5" onClick="test(this.value)" readonly style="text-align: center; width:50px; height:50px; background-color: green; border-style: solid; border-color: #800000"></td>
+				<td ><input name="casella3" value="2" onClick="test(this.value)" readonly style="text-align: center; width:50px; height:50px; background-color: green; border-style: solid; border-color: #800000"></td>
+			</tr>
+			<tr>
+				<td ><input name="casella4" value="6" onClick="test(this.value)" readonly style="text-align: center; width:50px; height:50px; background-color: green; border-style: solid; border-color: #800000"></td>
+				<td ><input name="casella5" value="3" onClick="test(this.value)" readonly style="text-align: center; width:50px; height:50px; background-color: green; border-style: solid; border-color: #800000"></td>
+				<td ><input name="casella6" value="4" onClick="test(this.value)" readonly style="text-align: center; width:50px; height:50px; background-color: green; border-style: solid; border-color: #800000"></td>
+			</tr>
+			<tr>
+				<td ><input name="casella7" value="1" onClick="test(this.value)" readonly style="text-align: center; width:50px; height:50px; background-color: green; border-style: solid; border-color: #800000"></td>
+				<td ><input name="casella8" value="7" onClick="test(this.value)" readonly style="text-align: center; width:50px; height:50px; background-color: green; border-style: solid; border-color: #800000"></td>
+				<td ><input name="casella9" value="" onClick="test(this.value)" readonly style="text-align: center; width:50px; height:50px; background-color: green; border-style: solid; border-color: #800000"></td>
+
+			</tr>
+		</table>
+		</form>
+	</div>
+</div>
+</body>
+</html>
