@@ -49,9 +49,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
+var contacoppie = 0;
 var contaclick = 0;
-
-var cellavuota = 9;
 
 var selprec = -1;
 var selcorrente = -1;
@@ -83,59 +82,50 @@ function refreshtabella(a){
     }
 }
 
-function scambio(pos){
+function scopri(pos){
 	
      console.log("id dom: "+celle[pos-1]+".png posizione: "+ Number(pos-1));
 
 	 console.log(selcorrente);
+	 contaclick = contaclick + 1;
+	 $('#mosse').html(contaclick);
 	 //se non è stato selezionato niente, imposto selcorrente
      if (selcorrente == -1){
         selcorrente = pos-1;
         console.log("seleziono "+selcorrente);
 	 }
-     else{//altrimenti ho già una selezione, quindi confronto con quella precedente
-        selprec = selcorrente;
-        selcorrente = pos-1;
-        console.log("confronto selezioni");
-        console.log("corrente: "+celle[selcorrente]+" pos: "+selcorrente+" precedente:"+celle[selprec]+ " pos: "+ selprec);
-		if (celle[selcorrente] == celle[selprec])
+     else
+	 {//altrimenti ho già una selezione, quindi confronto con quella precedente
+		selprec = selcorrente;
+		selcorrente = pos-1;
+		if( selcorrente!=selprec)
 			{
-			var corr = selcorrente + 1;
-			var prec = selprec + 1;
-			alert("le selezioni sono uguali");
-			$('#'+corr.toString()+" img").attr('src','img/'+celle[selcorrente]+'.png');
-			$('#'+prec.toString()+" img").attr('src','img/'+celle[selprec]+'.png');
-			//$('#1').attr('src','img/1.png');
-			//console.log($('#'+selcorrente.toString()).attr('src','img/'+celle[selcorrente]+'.png'));
-			//console.log($('#'+selcorrente.toString()).attr('src','img/1.png'));
-			}
-     }
-}
-
-function haiVinto(){
-	var ordinato = false;
-	for (var i=0; i<celle.length; i++)
-	{
-		if (i != 0)
-		{
-			if (celle[i] > celle[i-1])
-			{
-				ordinato = true;
-			}
-			else
-			{
-				ordinato = false;
-				break;
-			}
+				console.log("confronto selezioni");
+				console.log("corrente: "+celle[selcorrente]+" pos: "+selcorrente+" precedente:"+celle[selprec]+ " pos: "+ selprec);
+				if(celle[selcorrente] == celle[selprec])
+					{
+						var corr = selcorrente + 1;
+						var prec = selprec + 1;
+						console.log("le selezioni sono uguali");
+						$('#'+corr.toString()+" img").attr('src','img/'+celle[selcorrente]+'.png');
+						$('#'+prec.toString()+" img").attr('src','img/'+celle[selprec]+'.png');
+						contacoppie++;
+						if (contacoppie == 8)
+							{
+								$('#win').attr("class","visible");
+							}
+						//console.log(contacoppie);
+						//$('#1').attr('src','img/1.png');
+						//console.log($('#'+selcorrente.toString()).attr('src','img/'+celle[selcorrente]+'.png'));
+						//console.log($('#'+selcorrente.toString()).attr('src','img/1.png'));
+					}
 		}
-	}
-	//console.log(ordinato);
-	return ordinato;
+	 }
 }
 
 $(document).ready(function(){
 
-	$('img').attr('src','img/vuoto.png');
+	$('img').attr('src','img/card.png');
     
 	shuffle(celle);
 	//refreshtabella(celle);
@@ -155,7 +145,7 @@ $(document).ready(function(){
     $('.col-').click(function (){
 		var clickcella = $(this).attr('id');
 		console.log(clickcella);
-		scambio(Number(clickcella));
+		scopri(Number(clickcella));
     });
 
 });

@@ -12,36 +12,36 @@
 <body>
     <div class="container">
 	<h1>Calcolatrice</h1>
-		<div class="row">
-			<div class="col-sm" id="schermo">schermo</div>
+		<div class="row" style="padding: 5px; border:5px solid black; width: 200px;">
+			<div class="col-" id="schermo"></div>
 		</div>
 		<div class="row">
-			<div class="col-"><button id="pot2" style="width: 50px;">2^2</button></div>
+			<div class="col-"><button id="pot2" style="width: 50px;">2^x</button></div>
 			<div class="col-"><button id="poty" style="width: 50px;">x^y</button></div>
 			<div class="col-"><button id="segno" style="width: 50px;">+/-</button></div>
 			<div class="col-"><button id="division" style="width: 50px;">/</button></div>
 		</div>
 		<div class="row">
-			<div class="col-"><button id="7" style="width: 50px;">7</button></div>
-			<div class="col-"><button id="8" style="width: 50px;">8</button></div>
-			<div class="col-"><button id="9" style="width: 50px;">9</button></div>
+			<div class="col-"><button id="7" value="7" style="width: 50px;">7</button></div>
+			<div class="col-"><button id="8" value="8" style="width: 50px;">8</button></div>
+			<div class="col-"><button id="9" value="9" style="width: 50px;">9</button></div>
 			<div class="col-"><button id="add" style="width: 50px;">+</button></div>
 		</div>
 		<div class="row">
-			<div class="col-"><button id="4" style="width: 50px;">4</button></div>
-			<div class="col-"><button id="5" style="width: 50px;">5</button></div>
-			<div class="col-"><button id="6" style="width: 50px;">6</button></div>
+			<div class="col-"><button id="4" value="4" style="width: 50px;">4</button></div>
+			<div class="col-"><button id="5" value="5" style="width: 50px;">5</button></div>
+			<div class="col-"><button id="6" value="6" style="width: 50px;">6</button></div>
 			<div class="col-"><button id="sottr" style="width: 50px;">-</button></div>
 		</div>
 		<div class="row">
-			<div class="col-"><button id="1" style="width: 50px;">1</button></div>
-			<div class="col-"><button id="2" style="width: 50px;">2</button></div>
-			<div class="col-"><button id="3" style="width: 50px;">3</button></div>
+			<div class="col-"><button id="1" value="1" style="width: 50px;">1</button></div>
+			<div class="col-"><button id="2" value="2" style="width: 50px;">2</button></div>
+			<div class="col-"><button id="3" value="3" style="width: 50px;">3</button></div>
 			<div class="col-"><button id="molt" style="width: 50px;">*</button></div>
 		</div>
 		<div class="row">
 			<div class="col-"><button id="0" value="0" style="width: 50px;">0</button></div>
-			<div class="col-"><button id="punto" style="width: 50px;">.</button></div>
+			<div class="col-"><button id="ce" style="width: 50px;">CE</button></div>
 			<div class="col-"><button id="canc" style="width: 50px;">C</button></div>
 			<div class="col-"><button id="ris" style="width: 50px;">=</button></div>
 		</div>
@@ -58,14 +58,19 @@ modo che ogni volta che si preme un’operazione, il display si ripulisce.</h1>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
 $(document).ready(function(){
+
 	$('#0').click(function () {
-		
-		var x = $('#0').val(); 
-		
-		alert(x);
-		document.getElementById('schermo').innerHTML = x;
-		
+		document.getElementById('schermo').innerHTML = $('#0').val();
 	});
+	
+	$("#ce").click(function(){
+		document.getElementById('schermo').innerHTML = ' ';
+	});
+
+	$("#canc").click(function(){
+		document.getElementById('schermo').innerHTML = ' ';
+	});
+	
 });
 </script>
 </body>
