@@ -89,36 +89,49 @@ function scopri(pos){
 	 console.log(selcorrente);
 	 contaclick = contaclick + 1;
 	 $('#mosse').html(contaclick);
-	 //se non è stato selezionato niente, imposto selcorrente
+	 //se non è stato selezionato niente, imposto selcorrente, caso iniziale, eseguito solo una volta
      if (selcorrente == -1){
-        selcorrente = pos-1;
+        selimmagine = pos;
+		selcorrente = selimmagine-1;
         console.log("seleziono "+selcorrente);
+		$("#"+selimmagine.toString()+" img").attr('src','img/'+celle[selcorrente]+'.png');
 	 }
      else
 	 {//altrimenti ho già una selezione, quindi confronto con quella precedente
 		selprec = selcorrente;
 		selcorrente = pos-1;
-		if( selcorrente!=selprec)
+		var imgcorr = selcorrente + 1;
+		var imgprec = selprec + 1;
+		
+		if(selcorrente!=selprec)//confronta solo che sto cliccando in una posizione differente
 			{
 				console.log("confronto selezioni");
 				console.log("corrente: "+celle[selcorrente]+" pos: "+selcorrente+" precedente:"+celle[selprec]+ " pos: "+ selprec);
+				$("#"+imgcorr.toString()+" img").attr('src','img/'+celle[selcorrente]+'.png');
 				if(celle[selcorrente] == celle[selprec])
 					{
-						var corr = selcorrente + 1;
-						var prec = selprec + 1;
 						console.log("le selezioni sono uguali");
-						$('#'+corr.toString()+" img").attr('src','img/'+celle[selcorrente]+'.png');
-						$('#'+prec.toString()+" img").attr('src','img/'+celle[selprec]+'.png');
+						$('#'+imgcorr.toString()+" img").attr('src','img/'+celle[selcorrente]+'.png');
+						$('#'+imgprec.toString()+" img").attr('src','img/'+celle[selprec]+'.png');
 						contacoppie++;
 						if (contacoppie == 8)
 							{
 								$('#win').attr("class","visible");
 							}
+						selcorrente = -1;
 						//console.log(contacoppie);
 						//$('#1').attr('src','img/1.png');
 						//console.log($('#'+selcorrente.toString()).attr('src','img/'+celle[selcorrente]+'.png'));
 						//console.log($('#'+selcorrente.toString()).attr('src','img/1.png'));
 					}
+				else{
+						$("#"+imgprec.toString()+" img").attr('src','img/card.png');
+						$("#"+imgcorr.toString()+" img").attr('src','img/card.png');
+						selcorrente = -1;
+						console.log(imgprec);
+						console.log(imgcorr);
+					}
+					
 		}
 	 }
 }
