@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- CSS dello stile calcolatrice-->
+	<link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Benvenuto!</title>
+  </head>
+<body>
+<div class="container">
+  <div id="header">
+    <h3>Javascript Calculator</h3></div>
+  <div id="calc" class="text-center">
+    <div id="display">
+    <div id="result"><p>0</p></div>
+    <div id="previous"><p>0</p></div>
+    </div>
+      <div id="keyboard">
+      <div class="row">
+        <button class="btn btn-info" value="7">7</button>
+        <button class="btn btn-info" value="8">8</button>
+        <button class="btn btn-info" value="9">9</button>
+        <button class="btn btn-danger" value="ac">AC</button>
+        <button class="btn btn-danger" value="ce">CE</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-info" value="4">4</button>
+        <button class="btn btn-info" value="5">5</button>
+        <button class="btn btn-info" value="6">6</button>
+        <button class="btn btn-warning" value="/">/</button>
+        <button class="btn btn-warning" value="*">*</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-info" value="1">1</button>
+        <button class="btn btn-info" value="2">2</button>
+        <button class="btn btn-info" value="3">3</button>
+        <button class="btn btn-warning" value="+">+</button>
+        <button class="btn btn-success btn-result" value="=">=</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-info btn-zero" value="0">0</button>
+         <!-- <button class="invisible" value=""></button> -->
+        <button class="btn btn-warning" value=".">.</button>
+        <button class="btn btn-warning" value="-">-</button>
+        <!-- <button class="invisible" value=""></button> -->
+        </div>
+    </div>
+  </div>
+</div>
+</body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+  var eq = ""; //tramite i button, prende anche l'operazione come stringa
+  var curNumber=""; //tramite i button (solo cifre), visualizza il numero inserito come stringa
+  var result = "";
+  var entry = ""; //rappresenta il valore che inserisco tramite i button, numero o segno che sia
+  var reset = false;
+
+  $("button").click(function() {    
+    entry = $(this).attr("value");
+
+	console.log("eq:",eq);
+	console.log("curNumber:",curNumber);
+	console.log("result:",result);
+	console.log("entry:",entry);
+	console.log("reset:",reset);
+    
+    if (entry === "ac") {
+      entry=0;
+      eq=0;
+      result=0;
+      curNumber=0;
+      $('#result p').html(entry);
+      $('#previous p').html(eq); 
+	  console.log($('#result p'));
+	  console.log($('#previous p'));
+    }
+    
+    else if (entry === "ce") {
+      if (eq.length > 1) {
+        eq = eq.slice(0, -1);        
+        $('#previous p').html(eq);
+		console.log($('#previous p').html(eq));
+      }
+      else {
+        eq = 0;  
+        $('#result p').html(0);
+		console.log($('#result p').html(0));
+      }
+      
+      $('#previous p').html(eq);
+	  console.log($('#previous p').html(eq));
+      
+      if (curNumber.length > 1) {
+        curNumber = curNumber.slice(0, -1);        
+        $('#result p').html(curNumber);
+		console.log($('#previous p').html(eq));
+      }
+      else {
+        curNumber = 0;  
+        console.log($('#result p').html(0));
+      }
+      
+    }
+    
+    else if (entry === "=") {
+      result = eval(eq);
+	  console.log("result eval(eq) dopo =",result);
+	  
+      $('#result p').html(result);
+	  
+      eq += "="+result;
+	  
+      $('#previous p').html(eq);
+	  
+      eq = result;
+	  console.log("eq dopo =", eq);
+      entry = result;
+	  console.log("entry dopo =",entry);
+      curNumber = result;
+	  console.log("curNumber dopo =",curNumber);
+      reset = true;
+	  console.log("reset dopo =", reset);
+    }
+    
+    else if (isNaN(entry)) {   //check if is not a number, and after that, prevents for multiple "." to enter the same number
+      if (entry !== ".") {     
+        reset = false;       
+        if (curNumber === 0 || eq === 0) { 
+          curNumber = 0;
+          eq = entry;         
+        }
+        else {
+          curNumber = "";
+          eq += entry;
+        }     
+        $('#previous p').html(eq); 
+      }
+      else if (curNumber.indexOf(".") === -1) { 
+        reset = false;
+        if (curNumber === 0 || eq === 0) { 
+          curNumber = 0.;
+          eq = 0.;           
+        }
+        else {
+          curNumber += entry;
+          eq += entry;        
+        }
+        $('#result p').html(curNumber);
+        $('#previous p').html(eq);        
+      }      
+    }
+        
+    else {  
+      if (reset) {
+        eq = entry;
+        curNumber = entry;       
+        reset = false;
+      }
+      else {
+        eq += entry; 
+        curNumber += entry;        
+        }
+       $('#previous p').html(eq); 
+       $('#result p').html(curNumber);
+      }   
+    
+    
+    if (curNumber.length > 10 || eq.length > 26) {
+      $("#result p").html("0");
+      $("#previous p").html("Too many digits");
+      curNumber ="";
+      eq="";
+      result ="";
+      reset=true;
+    }
+    
+    if (result.indexOf(".") !== -1) {
+      result = result.truncate()
+    }
+    
+  });
+    
+
+});
+</script>
+</html>
