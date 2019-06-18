@@ -87,7 +87,7 @@ $(document).ready(function() {
     
     else if (entry === "ce") {
       if (eq.length > 1) {
-        eq = eq.slice(0, -1);        
+        eq = eq.slice(0, -1); //elimina l'ultimo elemento inserito
         $('#previous p').html(eq);
 		console.log($('#previous p').html(eq));
       }
@@ -101,6 +101,7 @@ $(document).ready(function() {
 	  console.log($('#previous p').html(eq));
       
       if (curNumber.length > 1) {
+	    console.log("maggiore di uno");
         curNumber = curNumber.slice(0, -1);        
         $('#result p').html(curNumber);
 		console.log($('#previous p').html(eq));
@@ -134,17 +135,21 @@ $(document).ready(function() {
     
     else if (isNaN(entry)) {   //check if is not a number, and after that, prevents for multiple "." to enter the same number
       if (entry !== ".") {     
-        reset = false;       
+        reset = false;     
+		// primo inserimento 
         if (curNumber === 0 || eq === 0) { 
           curNumber = 0;
           eq = entry;         
         }
+		// concatena il nuovo elemento a eq
         else {
           curNumber = "";
           eq += entry;
         }     
+		// aggiorna
         $('#previous p').html(eq); 
       }
+	  // ho inserito la virgola
       else if (curNumber.indexOf(".") === -1) { 
         reset = false;
         if (curNumber === 0 || eq === 0) { 
@@ -159,9 +164,11 @@ $(document).ready(function() {
         $('#previous p').html(eq);        
       }      
     }
-        
-    else {  
+    // inserimento in ogni altro caso    
+    else { 
+       // resetto se ho pigiato AC	
       if (reset) {
+	    console.log("resetto");
         eq = entry;
         curNumber = entry;       
         reset = false;
@@ -183,10 +190,10 @@ $(document).ready(function() {
       result ="";
       reset=true;
     }
-    
-    if (result.indexOf(".") !== -1) {
+    console.log("result fine",result);
+    /*if (result.toString().indexOf(".") !== -1) {
       result = result.truncate()
-    }
+    }*/
     
   });
     
