@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+    <!-- Requazioneuired meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- CSS dello stile calcolatrice-->
@@ -16,10 +16,13 @@
     <h3>Javascript Calculator</h3></div>
   <div id="calc" class="text-center">
     <div id="display">
-    <div id="result"><p>0</p></div>
-    <div id="previous"><p>0</p></div>
+    <div id="ris"><p>0</p></div>
+    <div id="prec"><p>0</p></div>
     </div>
       <div id="keyboard">
+	  <div class="row">
+        <button class="btn btn-info" value="pot">x^y</button>
+	  </div>
       <div class="row">
         <button class="btn btn-info" value="7">7</button>
         <button class="btn btn-info" value="8">8</button>
@@ -39,7 +42,7 @@
         <button class="btn btn-info" value="2">2</button>
         <button class="btn btn-info" value="3">3</button>
         <button class="btn btn-warning" value="+">+</button>
-        <button class="btn btn-success btn-result" value="=">=</button>
+        <button class="btn btn-success btn-risultato" value="=">=</button>
       </div>
       <div class="row">
         <button class="btn btn-info btn-zero" value="0">0</button>
@@ -59,109 +62,109 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
 $(document).ready(function() {
-  var eq = ""; //tramite i button, prende anche l'operazione come stringa
-  var curNumber=""; //tramite i button (solo cifre), visualizza il numero inserito come stringa
-  var result = "";
-  var entry = ""; //rappresenta il valore che inserisco tramite i button, numero o segno che sia
+  var equazione = ""; //tramite i button, prende anche l'operazione come stringa
+  var numerocorrente=""; //tramite i button (solo cifre), visualizza il numero inserito come stringa
+  var risultato = "";
+  var valoreinserito = ""; //rappresenta il valore che inserisco tramite i button, numero o segno che sia
   var reset = false;
 
   $("button").click(function() {    
-    entry = $(this).attr("value");
+    valoreinserito = $(this).attr("value");
 
-	console.log("eq:",eq);
-	console.log("curNumber:",curNumber);
-	console.log("result:",result);
-	console.log("entry:",entry);
+	console.log("equazione:",equazione);
+	console.log("numerocorrente:",numerocorrente);
+	console.log("risultato:",risultato);
+	console.log("valoreinserito:",valoreinserito);
 	console.log("reset:",reset);
     
-    if (entry === "ac") {
-      entry=0;
-      eq=0;
-      result=0;
-      curNumber=0;
-      $('#result p').html(entry);
-      $('#previous p').html(eq); 
-	  console.log($('#result p'));
-	  console.log($('#previous p'));
+    if (valoreinserito === "ac") {
+      valoreinserito=0;
+      equazione=0;
+      risultato=0;
+      numerocorrente=0;
+      $('#ris p').html(valoreinserito);
+      $('#prec p').html(equazione); 
+	  console.log($('#ris p'));
+	  console.log($('#prec p'));
     }
     
-    else if (entry === "ce") {
-      if (eq.length > 1) {
-        eq = eq.slice(0, -1); //elimina l'ultimo elemento inserito
-        $('#previous p').html(eq);
-		console.log($('#previous p').html(eq));
+    else if (valoreinserito === "ce") {
+      if (equazione.length > 1) {
+        equazione = equazione.slice(0, -1); //elimina l'ultimo elemento inserito
+        $('#prec p').html(equazione);
+		console.log($('#prec p').html(equazione));
       }
       else {
-        eq = 0;  
-        $('#result p').html(0);
-		console.log($('#result p').html(0));
+        equazione = 0;  
+        $('#ris p').html(0);
+		//console.log($('#ris p').html(0));
       }
       
-      $('#previous p').html(eq);
-	  console.log($('#previous p').html(eq));
+      $('#prec p').html(equazione);
+	  console.log($('#prec p').html(equazione));
       
-      if (curNumber.length > 1) {
+      if (numerocorrente.length > 1) {
 	    console.log("maggiore di uno");
-        curNumber = curNumber.slice(0, -1);        
-        $('#result p').html(curNumber);
-		console.log($('#previous p').html(eq));
+        numerocorrente = numerocorrente.slice(0, -1);        
+        $('#ris p').html(numerocorrente);
+		//console.log($('#prec p').html(equazione));
       }
       else {
-        curNumber = 0;  
-        console.log($('#result p').html(0));
+        numerocorrente = 0;  
+        //console.log($('#ris p').html(0));
       }
       
     }
     
-    else if (entry === "=") {
-      result = eval(eq);
-	  console.log("result eval(eq) dopo =",result);
+    else if (valoreinserito === "=") {
+      risultato = eval(equazione);
+	  console.log("risultato eval(equazione) dopo =",risultato);
 	  
-      $('#result p').html(result);
+      $('#ris p').html(risultato);
 	  
-      eq += "="+result;
+      equazione += "="+risultato;
 	  
-      $('#previous p').html(eq);
+      $('#prec p').html(equazione);
 	  
-      eq = result;
-	  console.log("eq dopo =", eq);
-      entry = result;
-	  console.log("entry dopo =",entry);
-      curNumber = result;
-	  console.log("curNumber dopo =",curNumber);
+      equazione = risultato;
+	  console.log("equazione dopo =", equazione);
+      valoreinserito = risultato;
+	  console.log("valoreinserito dopo =",valoreinserito);
+      numerocorrente = risultato;
+	  console.log("numerocorrente dopo =",numerocorrente);
       reset = true;
 	  console.log("reset dopo =", reset);
     }
     
-    else if (isNaN(entry)) {   //check if is not a number, and after that, prevents for multiple "." to enter the same number
-      if (entry !== ".") {     
+    else if (isNaN(valoreinserito)) {   //check if is not a number, and after that, prevents for multiple "." to enter the same number
+      if (valoreinserito !== ".") {     
         reset = false;     
 		// primo inserimento 
-        if (curNumber === 0 || eq === 0) { 
-          curNumber = 0;
-          eq = entry;         
+        if (numerocorrente === 0 || equazione === 0) { 
+          numerocorrente = 0;
+          equazione = valoreinserito;         
         }
-		// concatena il nuovo elemento a eq
+		// concatena il nuovo elemento a equazione
         else {
-          curNumber = "";
-          eq += entry;
+          numerocorrente = "";
+          equazione += valoreinserito;
         }     
 		// aggiorna
-        $('#previous p').html(eq); 
+        $('#prec p').html(equazione); 
       }
 	  // ho inserito la virgola
-      else if (curNumber.indexOf(".") === -1) { 
+      else if (numerocorrente.indexOf(".") === -1) { 
         reset = false;
-        if (curNumber === 0 || eq === 0) { 
-          curNumber = 0.;
-          eq = 0.;           
+        if (numerocorrente === 0 || equazione === 0) { 
+          numerocorrente = 0.;
+          equazione = 0.;           
         }
         else {
-          curNumber += entry;
-          eq += entry;        
+          numerocorrente += valoreinserito;
+          equazione += valoreinserito;        
         }
-        $('#result p').html(curNumber);
-        $('#previous p').html(eq);        
+        $('#ris p').html(numerocorrente);
+        $('#prec p').html(equazione);        
       }      
     }
     // inserimento in ogni altro caso    
@@ -169,30 +172,30 @@ $(document).ready(function() {
        // resetto se ho pigiato AC	
       if (reset) {
 	    console.log("resetto");
-        eq = entry;
-        curNumber = entry;       
+        equazione = valoreinserito;
+        numerocorrente = valoreinserito;       
         reset = false;
       }
       else {
-        eq += entry; 
-        curNumber += entry;        
+        equazione += valoreinserito; 
+        numerocorrente += valoreinserito;        
         }
-       $('#previous p').html(eq); 
-       $('#result p').html(curNumber);
+       $('#prec p').html(equazione); 
+       $('#ris p').html(numerocorrente);
       }   
     
     
-    if (curNumber.length > 10 || eq.length > 26) {
-      $("#result p").html("0");
-      $("#previous p").html("Too many digits");
-      curNumber ="";
-      eq="";
-      result ="";
+    if (numerocorrente.length > 10 || equazione.length > 26) {
+      $("#ris p").html("0");
+      $("#prec p").html("troppe cifre inserite");
+      numerocorrente ="";
+      equazione="";
+      risultato ="";
       reset=true;
     }
-    console.log("result fine",result);
-    /*if (result.toString().indexOf(".") !== -1) {
-      result = result.truncate()
+    console.log("risultato fine",risultato);
+    /*if (risultato.toString().indexOf(".") !== -1) {
+      risultato = risultato.truncate()
     }*/
     
   });
