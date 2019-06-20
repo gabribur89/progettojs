@@ -21,7 +21,7 @@
     </div>
       <div id="keyboard">
 	  <div class="row">
-        <button class="btn btn-info" value="pot">x^y</button>
+        <button class="btn btn-info" value="^">x^y</button>
 	  </div>
       <div class="row">
         <button class="btn btn-info" value="7">7</button>
@@ -61,27 +61,53 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
+function miaeval(equazione){
+    console.log(equazione);
+
+    for (var i = 0; i < equazione.length; i++){ 
+        console.log(equazione.charAt(i));    
+    }
+    
+}
+    
 $(document).ready(function() {
   var equazione = ""; //tramite i button, prende anche l'operazione come stringa
+  var display_calc = ""; // mostra sullo schermo della calcolatrice l'equazione
   var numerocorrente=""; //tramite i button (solo cifre), visualizza il numero inserito come stringa
   var risultato = "";
   var valoreinserito = ""; //rappresenta il valore che inserisco tramite i button, numero o segno che sia
   var reset = false;
 
+  // variabili speciali per il caso potenza
+  var op1;
+  var op2;
+  var potenzaOp = false;
+
   $("button").click(function() {    
     valoreinserito = $(this).attr("value");
 
-	console.log("equazione:",equazione);
+	/*console.log("equazione:",equazione);
 	console.log("numerocorrente:",numerocorrente);
 	console.log("risultato:",risultato);
 	console.log("valoreinserito:",valoreinserito);
-	console.log("reset:",reset);
-    
+	console.log("reset:",reset);*/
+
+
+    if (valoreinserito === "^"){
+       op1 = equazione.charAt(equazione.length-1);
+       potenzaOp = true;
+       console.log("sono in potenza");
+       console.log(op1);
+    }
+
+
+
     if (valoreinserito === "ac") {
       valoreinserito=0;
       equazione=0;
       risultato=0;
       numerocorrente=0;
+      potenzaOp = false;
       $('#ris p').html(valoreinserito);
       $('#prec p').html(equazione); 
 	  console.log($('#ris p'));
@@ -115,7 +141,7 @@ $(document).ready(function() {
       }
       
     }
-    
+   
     else if (valoreinserito === "=") {
       risultato = eval(equazione);
 	  console.log("risultato eval(equazione) dopo =",risultato);
@@ -179,7 +205,20 @@ $(document).ready(function() {
       else {
         equazione += valoreinserito; 
         numerocorrente += valoreinserito;        
+ 
+          
+        if (potenzaOp){
+           console.log("ho attivato operatore potenza");
+           op2 = equazione.charAt(equazione.length-1); 
+           var potenza_res = Math.pow(op1, op2);
+           console.log(potenza_res);
+           equazione = equazione.slice(0,-3) + potenza_res;
+           potenzaOp = false;
+           console.log(equazione);
         }
+
+ 
+       }
        $('#prec p').html(equazione); 
        $('#ris p').html(numerocorrente);
       }   
