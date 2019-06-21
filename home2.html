@@ -16,7 +16,7 @@
 				<h1>Ciao, <b id="name"></b>! Benvenuto nella Homepage!</h1>
 			
 				<div>
-					<iframe id="frame" class="embed-responsive-item invisible" src="" width="500" height="500"></iframe>
+					<iframe id="frame" class="embed-responsive-item invisible" src="" width="750" height="750"></iframe>
 				</div>
 				
 				valutare poi tasto ESCI .... esce dall'area
@@ -43,36 +43,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
 	<script>
-	
-	function applicaPreferenze(){
-		var user = JSON.parse(localStorage.getItem('user'));
-		$('#name').html(user.username);
-		console.log(user);
-		$('body').css("background-color", user.background);
-		$('body').css("font-size", user.dimension);
-		$('body').css("font-family", user.type); 
-		$('body').css("color", user.color);
-		console.log(user.menu);
-		if (user.menu == "sin")
-			{
-				$('#menuHome').removeClass("order-2").addClass("order-1");
-				$('#bodyHome').removeClass("order-1").addClass("order-2");
-			}
-		else
-			{
-				$('#menuHome').removeClass("order-1").addClass("order-2");
-				$('#bodyHome').removeClass("order-2").addClass("order-1");
-			}
-	}
 			
-	$(document).ready(function(){
-	
-		if (localStorage.getItem('user') === null)
-			{
-				alert("errore");
-			}
-		else
-			applicaPreferenze();
+	$(document).ready(function(){	
 			
 		$('#btnslide').click(function () {
 			//alert("entro");
@@ -97,7 +69,7 @@
 			$('#frame').attr({"class": "embed-responsive-item visible", "src": "calcolatriceDUE.html"});
 			//alert("esco");
 		});
-			
+		
 	});
 	</script>
   
