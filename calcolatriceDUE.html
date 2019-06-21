@@ -1,60 +1,58 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Requazioneuired meta tags -->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- CSS dello stile calcolatrice-->
-	<link rel="stylesheet" href="style.css">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<title>Benvenuto!</title>
   </head>
 <body>
-<div class="container">
-  <div id="header">
-    <h3>Javascript Calculator</h3></div>
-  <div id="calc" class="text-center">
-    <div id="display">
-    <div id="ris"><p>0</p></div>
-    <div id="prec"><p>0</p></div>
-    </div>
-      <div id="keyboard">
-	  <div class="row">
-        <button class="btn btn-info" value="^">x^y</button>
-	  </div>
-      <div class="row">
-        <button class="btn btn-info" value="7">7</button>
-        <button class="btn btn-info" value="8">8</button>
-        <button class="btn btn-info" value="9">9</button>
-        <button class="btn btn-danger" value="ac">AC</button>
-        <button class="btn btn-danger" value="ce">CE</button>
-      </div>
-      <div class="row">
-        <button class="btn btn-info" value="4">4</button>
-        <button class="btn btn-info" value="5">5</button>
-        <button class="btn btn-info" value="6">6</button>
-        <button class="btn btn-warning" value="/">/</button>
-        <button class="btn btn-warning" value="*">*</button>
-      </div>
-      <div class="row">
-        <button class="btn btn-info" value="1">1</button>
-        <button class="btn btn-info" value="2">2</button>
-        <button class="btn btn-info" value="3">3</button>
-        <button class="btn btn-warning" value="+">+</button>
-        <button class="btn btn-success btn-risultato" value="=">=</button>
-      </div>
-      <div class="row">
-        <button class="btn btn-info btn-zero" value="0">0</button>
-         <!-- <button class="invisible" value=""></button> -->
-        <button class="btn btn-warning" value=".">.</button>
-        <button class="btn btn-warning" value="-">-</button>
-        <!-- <button class="invisible" value=""></button> -->
-        </div>
-    </div>
-  </div>
-</div>
-</body>
+    <div class="container">
+	<h1>Calcolatrice</h1>
+		<div class="row" style="padding: 5px; border:5px solid black; width: 400px;">
+			<div class="col-" id="schermo">
+				<div id="ris"><p>0</p></div>
+				<div id="prec"><p>0</p></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-"><button class="btn btn-info" id="^" style="width: 100px;">x^y</button></div>
+			<div class="col-"><button class="btn btn-danger" id="ce" style="width: 100px;">CE</button></div>
+			<div class="col-"><button class="btn btn-danger" id="ac" style="width: 100px;">AC</button></div>
+			<div class="col-"><button class="btn btn-warning" id="/" style="width: 100px;">/</button></div>
+		</div>
+		<div class="row">
+			<div class="col-"><button class="btn btn-info" id="7" value="7" style="width: 100px;">7</button></div>
+			<div class="col-"><button class="btn btn-info" id="8" value="8" style="width: 100px;">8</button></div>
+			<div class="col-"><button class="btn btn-info" id="9" value="9" style="width: 100px;">9</button></div>
+			<div class="col-"><button class="btn btn-warning" id="+" style="width: 100px;">+</button></div>
+		</div>
+		<div class="row">
+			<div class="col-"><button class="btn btn-info" id="4" value="4" style="width: 100px;">4</button></div>
+			<div class="col-"><button class="btn btn-info" id="5" value="5" style="width: 100px;">5</button></div>
+			<div class="col-"><button class="btn btn-info" id="6" value="6" style="width: 100px;">6</button></div>
+			<div class="col-"><button class="btn btn-warning" id="-" style="width: 100px;">-</button></div>
+		</div>
+		<div class="row">
+			<div class="col-"><button class="btn btn-info" id="1" value="1" style="width: 100px;">1</button></div>
+			<div class="col-"><button class="btn btn-info" id="2" value="2" style="width: 100px;">2</button></div>
+			<div class="col-"><button class="btn btn-info" id="3" value="3" style="width: 100px;">3</button></div>
+			<div class="col-"><button class="btn btn-warning" id="*" style="width: 100px;">*</button></div>
+		</div>
+		<div class="row">
+			<div class="col-"><button class="btn btn-info" id="0" value="0" style="width: 200px;">0</button></div>
+			<div class="col-"><button class="btn btn-warning" id="." style="width: 100px;">.</button></div>
+			<div class="col-"><button class="btn btn-success" id="=" style="width: 100px;">=</button></div>
+		</div>
+		<a href="homepage.html">Torna alla Home</a>
+	</div>
+	<h1>Piccola calcolatrice per le operazioni di: somma, sottrazione, divisione,
+moltiplicazione, elevamento a potenza. La calcolatrice deve funzionare in
+modo che ogni volta che si preme un'operazione, il display si ripulisce.</h1>
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -84,7 +82,7 @@ $(document).ready(function() {
   var potenzaOp = false;
 
   $("button").click(function() {    
-    valoreinserito = $(this).attr("value");
+    valoreinserito = $(this).attr("id");
 	
 
 	/*console.log("equazione:",equazione);
@@ -95,23 +93,24 @@ $(document).ready(function() {
 
 
     if (valoreinserito === "^"){
-       op1 = equazione.charAt(equazione.length-1);
+       //op1 = equazione.charAt(equazione.length-1);
+	   op1 = numerocorrente;
        potenzaOp = true;
-       console.log("sono in potenza");
+       console.log("sono in potenza",numerocorrente);
        console.log(op1);
     }
 
 
 
     if (valoreinserito === "ac") {
-      valoreinserito=0;
-      equazione=0;
-      risultato=0;
-      numerocorrente=0;
+      valoreinserito="0";
+      equazione="0";
+      risultato="0";
+      numerocorrente="0";
       potenzaOp = false;
 	  display_calc = 0;
       $('#ris p').html(valoreinserito);
-      $('#prec p').html(display_calc); 
+      $('#prec p').html(display_calc);
 	  console.log($('#ris p'));
 	  console.log($('#prec p'));
     }
@@ -206,21 +205,32 @@ $(document).ready(function() {
         reset = false;
       }
       else {
-        equazione += valoreinserito; 
-        numerocorrente += valoreinserito;  
+		console.log("inserisco:", valoreinserito);
+        if (equazione.charAt(0) === '0'){
+		equazione = valoreinserito;
+		numerocorrente = valoreinserito;
+		}
+		else {
+		equazione += valoreinserito; 
+		numerocorrente += valoreinserito;
+		}
+  
 		display_calc = equazione;
           
         if (potenzaOp){
-           console.log("ho attivato operatore potenza");
-           op2 = equazione.charAt(equazione.length-1); 
+           console.log("ho attivato operatore potenza",numerocorrente);
+           //op2 = equazione.charAt(equazione.length-1);
+		   op2 = numerocorrente;
            var potenza_res = Math.pow(op1, op2);
-           console.log(potenza_res);
-           equazione = equazione.slice(0,-3) + potenza_res;
+           //console.log(potenza_res);
+		   console.log("lung:", op1.length, op2.length);
+		   var lops = op1.length+op2.length+1;
+		   console.log("ltot:" , lops);
+           equazione = equazione.slice(0,-lops) + potenza_res;
            potenzaOp = false;
            console.log(equazione);
         }
-
- 
+		
        }
        $('#prec p').html(display_calc); 
        $('#ris p').html(numerocorrente);
@@ -245,4 +255,5 @@ $(document).ready(function() {
 
 });
 </script>
+</body>
 </html>
