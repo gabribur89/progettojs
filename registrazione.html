@@ -129,16 +129,60 @@
 			<!-- MENU CHE VIENE SCELTO DALL'UTENTE-->
 			<div class="col-md-4 order-1" id="MenuReg">
 				<nav class="nav flex-column">
-				  <a class="nav-link active" href="#">Slide Show</a>
-				  <a class="nav-link" href="#">8 Puzzle Game</a>
-				  <a class="nav-link" href="#">Memory Game</a>
-				  <a class="nav-link" href="#">Calcolatrice</a>
+				  <button type="button" class="btn btn-info">Slide Show</button>
+				  <button type="button" class="btn btn-info">8 Puzzle Game</button>
+				  <button type="button" class="btn btn-info">Memory Game</button>
+				  <button type="button" class="btn btn-info">Calcolatrice</button>
 				</nav>
 			</div>
 			<!---->
 		</div>
 		<a href="index.html">Torna alla home</a>
 	</div>
+	
+	<!-- MODAL MANUALE -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			...
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<!-- -->
+	
+	<!-- MODAL DAL WEB -->
+	     <!-- Modal (inside img-div) -->
+			<div id="modal1" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+				 <div class="modal-header">
+				  <h4 class="modal-title">Modal Header</h4>
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				 </div>
+				<div class="modal-body">
+				  <p>Some text in the modal.</p>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+	<!-- -->
 	
 	<!-- MODAL UTENTE REGISTRATO -->
 		<!-- Modal -->
@@ -175,7 +219,7 @@
 				  <button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
-				  <p>Utente registrato correttamente!</p>
+				  <p>Devi controllare mail e password, non corrispondono</p>
 				</div>
 				<div class="modal-footer">
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
@@ -339,6 +383,7 @@
 			{
 				//modal_avviso2
 				alert("Devi controllare bene i campi inseriti(mail e password/conferma password)");
+				//$("#modal1").modal();
 				//$("#mailerror").text("email non corretta");
 			}
 			//cercare di fare il confronto if
@@ -346,6 +391,19 @@
 			else
 			
 			{
+			
+				alert(JSON.stringify({
+					
+					username: userval,
+					pwd: pwdval,
+					background: bg,
+					dimension: dm,
+					type: tp,
+					color: col,
+					menu: posMenu,
+					loggato: false,}));
+				
+				
 				localStorage.setItem('user', JSON.stringify({
 					
 					username: userval,
@@ -359,7 +417,9 @@
 					
 				}));
 				
-				$("#modal_okreg").modal();
+				alert("Utente registrato correttamente");
+				//$("#modal_okreg").modal('show');
+				window.location.replace("index.html");
 			
 			}
 			

@@ -4,7 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<!-- Uso un font da google -->
+	<link href="https://fonts.googleapis.com/css?family=Dokdo" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<title>Benvenuto!</title>
@@ -70,6 +72,8 @@
 				</div>
 			</div>
 	</div>
+	<br>
+	<button type="button" class="btn btn-info" id="tornahome">Torna alla Homepage</button>
 </body>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -77,6 +81,27 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
+function applicaPreferenze(){
+	var user = JSON.parse(localStorage.getItem('user'));
+	$('#titolo').attr("class","visible");
+	$('#name').html(user.username);
+	console.log(user);
+	$('body').css("background-color", user.background);
+	$('body').css("font-size", user.dimension);
+	$('body').css("font-family", user.type); 
+	$('body').css("color", user.color);
+	if (user.menu == "sin")
+		{
+			$('#menuHome').removeClass("order-2").addClass("order-1");
+			$('#bodyHome').removeClass("order-1").addClass("order-2");
+		}
+	else
+		{
+			$('#menuHome').removeClass("order-1").addClass("order-2");
+			$('#bodyHome').removeClass("order-2").addClass("order-1");
+		}
+}
+
 $(document).ready(function(){
 
 	 /*$('#carouselExampleIndicators').carousel({
@@ -97,6 +122,15 @@ $(document).ready(function(){
 		  opt.interval= 10000;
 		  c.data({options: opt})
 	 });*/
+	
+	if (localStorage.getItem('user') === null)
+		{
+			alert("Errore, devi registrarti con i tuoi dati");
+			window.location.replace("index.html");
+			//$('#btnreg').attr("class","visible");
+		}
+	else
+		applicaPreferenze();
 	
 	$('#uploadimg1').change( function(event) {
 		$("#img1").attr('src',URL.createObjectURL(event.target.files[0]));
@@ -128,6 +162,10 @@ $(document).ready(function(){
 	 $('#stop').click(function () {
 		$('.carousel').carousel('pause')
 	 });
+	 
+	$('#tornahome').click(function (){
+		window.location='homepage.html';
+	});
 
 });
 </script>  

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Uso un font da google -->
+	<link href="https://fonts.googleapis.com/css?family=Dokdo" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>	
+    <title>Benvenuto!</title>
+  </head>
+  <body>
+    <div class="container">
+		<div class="row">
+			<div class="col-md-8 order-2" id="bodyHome">
+				<h1 id="titolo" class="invisible">Ciao, <b id="name"></b>! Benvenuto nella Homepage!</h1>
+				<button type="button" class="btn btn-link invisible" id="btnreg">Registrati</button>
+			
+				<div id="playground">
+				<h2>clicca sui links a disposizione per giocare o fare qualche calcolo matematico</h2>
+				</div>
+
+				<!--a seconda del posizionamento impostato dalla registrazione, si vedrà il menù-->
+			</div>
+			<!-- MENU CHE VIENE SCELTO DALL'UTENTE-->
+				<div class="col-md-4 order-1" id="menuHome">
+					<nav class="nav flex-column">
+					  <button type="button" class="btn btn-info" id="btnslide">SlideShow</button>
+					  <button type="button" class="btn btn-info" id="btnpuzzle">8 Puzzle</button>
+					  <button type="button" class="btn btn-info" id="btnmemory">Memory Game</button>
+					  <button type="button" class="btn btn-info" id="btncalc">Calcolatrice</button>
+					  <button type="button" class="btn btn-info" id="logout">Logout</button>
+					</nav>
+				</div>
+			<!---->
+		</div>
+	</div>
+
+
+	<script>
+
+	
+	function applicaPreferenze(){
+		var user = JSON.parse(localStorage.getItem('user'));
+		$('#titolo').attr("class","visible");
+		$('#name').html(user.username);
+		console.log(user);
+		$('body').css("background-color", user.background);
+		$('body').css("font-size", user.dimension);
+		$('body').css("font-family", user.type); 
+		$('body').css("color", user.color);
+		if (user.menu == "sin")
+			{
+				$('#menuHome').removeClass("order-2").addClass("order-1");
+				$('#bodyHome').removeClass("order-1").addClass("order-2");
+			}
+		else
+			{
+				$('#menuHome').removeClass("order-1").addClass("order-2");
+				$('#bodyHome').removeClass("order-2").addClass("order-1");
+			}
+	}
+			
+	$(document).ready(function(){
+	
+	
+		if (localStorage.getItem('user') != null)
+		{
+			var user = JSON.parse(localStorage.getItem('user'));
+		
+			if (!user.loggato)
+				{
+					window.location.replace("index.html");
+				}
+		}
+	
+		if (localStorage.getItem('user') === null)
+			{
+				alert("Errore, devi registrarti con i tuoi dati");
+				window.location.replace("index.html");
+				//$('#btnreg').attr("class","visible");
+			}
+		else
+			applicaPreferenze();
+			
+		$('#btnslide').click(function () {
+			//alert("entro");
+			//$('#frame').attr({"class": "embed-responsive-item visible", "src": "slideshow.html"});
+			window.location='slideshow.html';
+			//alert("esco");
+		});
+		
+		$('#btnpuzzle').click(function () {
+			//alert("entro");
+            //mostra_puzzle();
+			window.location='8puzzle.html';
+			//$('#frame').attr({"class": "embed-responsive-item visible", "src": "8puzzle.html"});
+			//alert("esco");
+		});
+		
+		$('#btnmemory').click(function () {
+			//alert("entro");
+			//$('#frame').attr({"class": "embed-responsive-item visible", "src": "memorygame.html"});
+			window.location='memorygame.html';
+			//alert("esco");
+		});
+		
+		$('#btncalc').click(function () {
+			//alert("entro");
+			//$('#frame').attr({"class": "embed-responsive-item visible", "src": "calcolatrice.html"});
+			window.location='calcolatrice.html';
+			//alert("esco");
+		});
+		
+		$('#logout').click(function () {
+			var user = JSON.parse(localStorage.getItem('user'));
+			user.loggato = false;
+			localStorage.setItem('user',JSON.stringify(user));
+			console.log(user);
+			window.location.replace("index.html");
+		});
+		
+	});
+	</script>
+  
+  </body>
+</html>
