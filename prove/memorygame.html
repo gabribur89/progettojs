@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Benvenuto!</title>
+  </head>
+<body>
+	<div class="container">
+		<h1>Memory Game</h1>
+		<br>
+			<div class="row" id="0">
+				<div class="col" id="1"></div>
+				<div class="col" id="2"></div>
+				<div class="col" id="3"></div>
+				<div class="col" id="4"></div>
+			</div>
+			<div class="row" id="1">
+				<div class="col" id="5"></div>
+				<div class="col" id="6"></div>
+				<div class="col" id="7"></div>
+				<div class="col" id="8"></div>
+			</div>
+			<div class="row" id="2">
+				<div class="col" id="9"></div>
+				<div class="col" id="10"></div>
+				<div class="col" id="11"></div>
+				<div class="col" id="12"></div>
+			</div>
+			<div class="row" id="3">
+				<div class="col" id="13"></div>
+				<div class="col" id="14"></div>
+				<div class="col" id="15"></div>
+				<div class="col" id="16"></div>
+			</div>
+			<div class="row" id="4">
+				<div class="col" id="17"></div>
+				<div class="col" id="18"></div>
+				<div class="col" id="19"></div>
+				<div class="col" id="20"></div>
+			</div>
+			<div class="row" id="5">
+				<div class="col" id="21"></div>
+				<div class="col" id="22"></div>
+				<div class="col" id="23"></div>
+				<div class="col" id="24"></div>
+			</div>
+			<div class="row" id="6">
+				<div class="col" id="25"></div>
+				<div class="col" id="26"></div>
+				<div class="col" id="27"></div>
+				<div class="col" id="28"></div>
+			</div>
+			<div class="row" id="7">
+				<div class="col" id="29"></div>
+				<div class="col" id="30"></div>
+				<div class="col" id="31"></div>
+				<div class="col" id="32"></div>
+			</div>
+	</div>
+	<button id="nuovogioco" type="submit" class="btn btn-primary">Nuovo Gioco</button>
+	<br>
+	<label>Tempo trascorso: <b><span id="minuti"></span>:<span id="secondi"></span></b></label>
+	<br>
+	<label>Numero tentativi effettuati:<b></b></label>
+	<br>
+	<h1>Gioco del Memo: si predispongono N coppie di immagini (uguali 2 a 2) e
+si associano casualmente a delle posizioni nel documento; l’utente
+cliccando su di una posizione visualizza l’immagine corrispondente e deve
+trovare la posizione con l’immagine gemella: se la trova le due immagini
+rimangono visibili, altrimenti le immagini scoperte vengono nuovamente
+nascoste. Si termina quando sono state scoperte tutte le coppie e
+l’applicazione produce il tempo impiegato ed il numero di tentativi
+effettuati. Prevedere il bottono di “Nuovo gioco” che rimescola le carte
+(riesegue l’associazione causuale tra immagini e posizioni).</h1>
+</body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+
+//var celle = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32'];
+
+/*mescola i numeri    
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+*/
+
+function timer(){
+/*Funzione per TIMER .... parte quando inizio un nuovo gioco*/
+		var sec = 0;
+			function pad (val){ 
+				return val > 9 ? val : "0" + val;
+			}
+			setInterval( function(){
+				document.getElementById("secondi").innerHTML=pad(++sec%60);
+				document.getElementById("minuti").innerHTML=pad(parseInt(sec/60,10));
+			}, 1000);
+}
+
+$(document).ready(function(){
+
+	$('.col').prepend('<img src="img/vuoto.png"/>');
+	
+	$('#nuovogioco').click(function () {
+		timer();
+		//shuffle(celle);
+	});
+	// click su di una cella 
+    $('.col').click(function (){
+		var clickcella = $(this).attr('id');
+		console.log(clickcella);
+	});
+});
+</script>
+</html>

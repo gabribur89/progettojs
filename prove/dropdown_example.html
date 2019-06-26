@@ -1,0 +1,90 @@
+ <!doctype html>
+ <html>
+   <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- preso da qua: https://github.com/zevero/simpleWebstorage --> 
+    <script src=js/extendLocalStorage.js></script>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+ 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Pagina di Registrazione</title>
+  </head>
+  <body>
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Seleziona colore
+      </button>
+      <div id="sfondo" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#" id="rosso" >Rosso</a>
+        <a class="dropdown-item" href="#" id="blue" >Blue</a>
+        <a class="dropdown-item" href="#" id="giallo" >Giallo</a>
+      </div>
+    </div>
+
+    <script>
+		//alert("esempio");
+        Storage.prototype.setUserPrefs = function(key, obj) {
+            return this.setUserPrefs(key, JSON.stringify(obj))
+        }
+        Storage.prototype.getPrefs = function(key) {
+            return JSON.parse(this.getItem(key))
+        }
+
+        alert(localStorage.get('Fab').background);
+        //localStorage.remove('Fab');
+              
+
+
+        // inizialmente vuoto
+        var user = {
+            "login" : "Fab",
+            "password" : "Bur",
+            "background" : "",
+            "font" : "",
+            "font-size" : "",
+        }
+
+        $(document).ready(function(){
+        $('#sfondo a').click(function () {
+             // sostuisci il node del menu con la selezione
+             var color = $(this).attr('id'); 
+             $('.dropdown-toggle').text(color); 
+             // modifca al volo in background , non funziona ancora
+             switch(color){
+                case "rosso":
+                    $('body').css("background-color", "red");
+                    user.background="red";
+                    break;
+                case "blue":
+                    $('body').css("background-color", "blue");             
+                    user.background="blue";
+                    break;
+                case "giallo":
+                    $('body').css("background-color", "#FFFF00");             
+                    user.background="#FFFF00";
+                    break;
+             }
+              //alert($(this).attr('id'));
+              //alert(user.background );
+              //var s = JSON.stringify(user);
+              //alert(s);
+
+            localStorage.set('Fab', user);
+        });
+        
+
+        });
+    </script>
+</body>
+ </html>

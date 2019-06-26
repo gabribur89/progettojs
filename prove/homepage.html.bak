@@ -100,19 +100,19 @@
 		
 		$('#btnpuzzle').click(function () {
 			//alert("entro");
-			$('#frame').attr({"class": "embed-responsive-item visible", "src": "8puzzle.html"});
+			$('#frame').attr({"class": "embed-responsive-item visible", "src": "provaPuzzle.html"});
 			//alert("esco");
 		});
 		
 		$('#btnmemory').click(function () {
 			//alert("entro");
-			$('#frame').attr({"class": "embed-responsive-item visible", "src": "memorygame.html"});
+			$('#frame').attr({"class": "embed-responsive-item visible", "src": "esempioMemory2.html"});
 			//alert("esco");
 		});
 		
 		$('#btncalc').click(function () {
 			//alert("entro");
-			$('#frame').attr({"class": "embed-responsive-item visible", "src": "calcolatrice.html"});
+			$('#frame').attr({"class": "embed-responsive-item visible", "src": "calcolatriceDUE.html"});
 			//alert("esco");
 		});
 		
