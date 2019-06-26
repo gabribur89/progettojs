@@ -7,9 +7,30 @@ var celle = ['1','2','3','4','5','6','7','8','9'];
 
 function mostra_puzzle(){
 
-    var html = '<h1>'+
-        'Test'+
-        '</h1>';
+    var html = 	'<div class="container">' +
+		'<h1>8 Puzzle Game</h1>'+
+		'<br>'+
+		'<label class="invisible" id="win">Complimenti, hai vinto!</label>'+
+			'<div class="row" id="0">'+
+				'<div class="col-" id="1"><img src="img/1.png"></div>'+
+				'<div class="col-" id="2"><img src="img/2.png"></div>'+
+				'<div class="col-" id="3"><img src="img/3.png"></div>'+
+			'</div>'+
+			'<div class="row" id="1">'+
+				'<div class="col-" id="4"><img src="img/4.png"></div>'+
+				'<div class="col-" id="5"><img src="img/5.png"></div>'+
+				'<div class="col-" id="6"><img src="img/6.png"></div>'+
+			'</div>'+
+			'<div class="row" id="2">'+
+				'<div class="col-" id="7"><img src="img/7.png"></div>'+
+				'<div class="col-" id="8"><img src="img/8.png"></div>'+
+				'<div class="col-" id="9"><img src="img/vuoto.png"></div>'+
+			'</div>'+
+	
+	'<button id="nuovogioco" type="submit" class="btn btn-primary">Nuovo Gioco</button>'+
+	'<br>'+
+	'<label>numero mosse effettuate:<b id="mosse"></b></label>'+
+	'</div>';
     $("#playground").html(html);
 }
 
