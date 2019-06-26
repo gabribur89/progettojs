@@ -146,6 +146,8 @@ $(document).ready(function(){
 	$('#nuovogioco').click(function () {
 		$('#win').attr("class","invisible");
 		contaclick = 0;
+		refreshtabella(celle);
+		$('img').attr('src','img/card.png');
 		$('#mosse').html(contaclick);
         selcorrente = -1;
         selprec = -1;
