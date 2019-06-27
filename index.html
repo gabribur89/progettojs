@@ -4,9 +4,13 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<title>Benvenuto!</title>
   </head>
   <body>
@@ -26,48 +30,48 @@
 		</form>
 		<a href="registrazione.html">Non sei registrato? Clicca qui!</a>
 	</div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	
-	<script>
-	console.log(user);
+<script>
+	//controllo attraverso localStorage -> getItem, se trovo un valore contenuto in 'user' entro
 	if (localStorage.getItem('user') != null)
 	{
 		var user = JSON.parse(localStorage.getItem('user'));
-	
-		if (user.loggato)
+		//serializza e deserializza il contenuto di 'user' 
+		
+		if (user.loggato) //ovvero, se loggato = true, reindirizzo alla homepage
 			{
 				window.location.replace("homepage.html");
 			}
 	}
 	
+	
+	//evento click bottone entra
 	$('#entra').click(function () {
+	
+		//variabili assumono il valore dei campi del form
 		var user = $('#email1').val();
 		var pwd = $('#pass1').val();
 		
-		//localStorage.getItem(mail);
+		//controllo attraverso localStorage -> getItem, se trovo un valore nullo entro
 		if (localStorage.getItem('user') === null)
 			{
-				alert("errore");
+				alert("Errore! Non è stato riconosciuto un utente!");
 			}
 		else
 			{
 				var user = JSON.parse(localStorage.getItem('user'));
+				//serializza e deserializza il contenuto di 'user'
 				if (user.username && user.pwd != pwd)
 					{
-						alert("login fallito! Non esiste nessun utente con queste credenziali");
+						alert("Login fallito! Non esiste nessun utente con queste credenziali");
 					}
 				else
 					{
-						console.log(user);
+						//console.log(user);
+						//se esiste un utente con le credenziali, setto loggato a true ed entro nella Homepage
 						user.loggato = true;
 						localStorage.setItem('user',JSON.stringify(user));
 						//console.log();
-						alert("benvenuto!");
+						alert("Benvenuto, verrai reindirizzato alla Homepage!");
 						window.location.replace("homepage.html");
 						
 						//localStorage.set(utenteloggato);

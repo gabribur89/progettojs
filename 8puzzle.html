@@ -9,6 +9,12 @@
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="js/util.js"></script>
 	<title>Benvenuto!</title>
   </head>
 <body>
@@ -38,32 +44,7 @@
 	</div>
 	<button type="button" class="btn btn-info" id="tornahome">Torna alla Homepage</button>
 </body>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
-function applicaPreferenze(){
-	var user = JSON.parse(localStorage.getItem('user'));
-	$('#titolo').attr("class","visible");
-	$('#name').html(user.username);
-	console.log(user);
-	$('body').css("background-color", user.background);
-	$('body').css("font-size", user.dimension);
-	$('body').css("font-family", user.type); 
-	$('body').css("color", user.color);
-	if (user.menu == "sin")
-		{
-			$('#menuHome').removeClass("order-2").addClass("order-1");
-			$('#bodyHome').removeClass("order-1").addClass("order-2");
-		}
-	else
-		{
-			$('#menuHome').removeClass("order-1").addClass("order-2");
-			$('#bodyHome').removeClass("order-2").addClass("order-1");
-		}
-}
 	
 var contaclick = 0;
 
@@ -75,6 +56,7 @@ var celle = ['1','2','3','4','5','6','7','8','9'];
 
 // mescola i numeri    
 function shuffle(a) {
+	//l'istruzione let dichiara il blocco della visibilità di una variabile e, facoltativamente la inizializza ad un valore.
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [a[i], a[j]] = [a[j], a[i]];
@@ -109,19 +91,19 @@ function scambio(pos){
     // 2) tre posizioni a destre e a sinistra 
     // se in almeno una c'è l'elemento vuoto si può fare lo scambio
 	if (pos != cellavuota){
-		console.log("posizione:",pos);
-		console.log("cellavuota:",cellavuota);
-		console.log("pos+1:",pos+1);
-		console.log("pos-1:",pos-1);
-		console.log("pos-3:",pos-3);
-		console.log("pos+3:",pos+3);
+		//console.log("posizione:",pos);
+		//console.log("cellavuota:",cellavuota);
+		//console.log("pos+1:",pos+1);
+		//console.log("pos-1:",pos-1);
+		//console.log("pos-3:",pos-3);
+		//console.log("pos+3:",pos+3);
 		if ((pos-1 == cellavuota) || (pos+1 == cellavuota) || (pos-3 == cellavuota) || (pos+3 == cellavuota))
 		{
 			var tmp = celle[pos-1];
 			celle[pos-1] = celle[cellavuota-1];
 			celle[cellavuota-1] = tmp;
 			cellavuota = pos;
-			console.log(celle);
+			//console.log(celle);
 			refreshtabella(celle);
 			contaclick = contaclick + 1;
 			$('#mosse').html(contaclick);
@@ -133,10 +115,11 @@ function scambio(pos){
 			//alert("bbb");
 		}
 	}
-	else {console.log("ho cliccato la cella vuota");}
+	/*else {console.log("ho cliccato la cella vuota");}*/
 
 }
 
+//funzione che controlla se ho vinto
 function haiVinto(){
 	var ordinato = false;
 	for (var i=0; i<celle.length; i++)
@@ -159,6 +142,8 @@ function haiVinto(){
 }
 
 $(document).ready(function(){
+
+	utenteLoggato();
 
 	if (localStorage.getItem('user') === null)
 		{

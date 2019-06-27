@@ -9,6 +9,12 @@
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="js/util.js"></script>
 	<title>Benvenuto!</title>
   </head>
 <body>
@@ -47,32 +53,7 @@
 	<br>
 	<button type="button" class="btn btn-info" id="tornahome">Torna alla Homepage</button>
 </body>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
-function applicaPreferenze(){
-	var user = JSON.parse(localStorage.getItem('user'));
-	$('#titolo').attr("class","visible");
-	$('#name').html(user.username);
-	console.log(user);
-	$('body').css("background-color", user.background);
-	$('body').css("font-size", user.dimension);
-	$('body').css("font-family", user.type); 
-	$('body').css("color", user.color);
-	if (user.menu == "sin")
-		{
-			$('#menuHome').removeClass("order-2").addClass("order-1");
-			$('#bodyHome').removeClass("order-1").addClass("order-2");
-		}
-	else
-		{
-			$('#menuHome').removeClass("order-1").addClass("order-2");
-			$('#bodyHome').removeClass("order-2").addClass("order-1");
-		}
-}
 
 var contacoppie = 0;
 var contaclick = 0;
@@ -80,20 +61,23 @@ var contaclick = 0;
 var selprec = -1;
 var selcorrente = -1;
 
+//celle è il nostro array di elementi
 var celle = ['vb','scream','ss','vb','fish','scream','fish','ss','radar','abc','pug','cat','radar','cat','pug','abc'];
 
 //var celle = [];
 
-// mescola i numeri    
+// mescola le caselle    
 function shuffle(a) {
+	//l'istruzione let dichiara il blocco della visibilità di una variabile e, facoltativamente la inizializza ad un valore.
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
+		//mescola random le caselle
         [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
 }
 
-// rinfreca matrice html
+// rinfresca matrice html
 function refreshtabella(a){
 
     //console.log(a);
@@ -162,6 +146,8 @@ function scopri(pos){
 }
 
 $(document).ready(function(){
+
+	utenteLoggato();
 
 	if (localStorage.getItem('user') === null)
 		{

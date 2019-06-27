@@ -14,7 +14,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>	
-    <title>Benvenuto!</title>
+    <script src="js/util.js"></script>
+	<title>Benvenuto!</title>
   </head>
   <body>
     <div class="container">
@@ -42,44 +43,11 @@
 			<!---->
 		</div>
 	</div>
-
-
 	<script>
-
-	
-	function applicaPreferenze(){
-		var user = JSON.parse(localStorage.getItem('user'));
-		$('#titolo').attr("class","visible");
-		$('#name').html(user.username);
-		console.log(user);
-		$('body').css("background-color", user.background);
-		$('body').css("font-size", user.dimension);
-		$('body').css("font-family", user.type); 
-		$('body').css("color", user.color);
-		if (user.menu == "sin")
-			{
-				$('#menuHome').removeClass("order-2").addClass("order-1");
-				$('#bodyHome').removeClass("order-1").addClass("order-2");
-			}
-		else
-			{
-				$('#menuHome').removeClass("order-1").addClass("order-2");
-				$('#bodyHome').removeClass("order-2").addClass("order-1");
-			}
-	}
 			
 	$(document).ready(function(){
 	
-	
-		if (localStorage.getItem('user') != null)
-		{
-			var user = JSON.parse(localStorage.getItem('user'));
-		
-			if (!user.loggato)
-				{
-					window.location.replace("index.html");
-				}
-		}
+		utenteLoggato();
 	
 		if (localStorage.getItem('user') === null)
 			{
@@ -123,7 +91,7 @@
 			var user = JSON.parse(localStorage.getItem('user'));
 			user.loggato = false;
 			localStorage.setItem('user',JSON.stringify(user));
-			console.log(user);
+			//console.log(user);
 			window.location.replace("index.html");
 		});
 		

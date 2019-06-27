@@ -9,6 +9,12 @@
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="js/util.js"></script>
 	<title>Benvenuto!</title>
   </head>
 <body>
@@ -41,7 +47,6 @@
 								<li data-target="#carouselitem0" data-slide-to="0" class="active"></li>
 								<li data-target="#carouselitem1" data-slide-to="1"></li>
 								<li data-target="#carouselitem2" data-slide-to="2"></li>
-								<li data-target="#carouselitem3" data-slide-to="3"></li>
 							</ol>
 							  <div class="carousel-inner">
 									<div class="carousel-item active">
@@ -52,9 +57,6 @@
 									</div>
 									<div class="carousel-item">
 										<img id="img3" class="d-block w-10" src="" alt="Third slide" width="200px" height="200px">
-									</div>
-									<div class="carousel-item">
-										<img id="img4" class="d-block w-10" src="" alt="Fourth slide" width="200px" height="200px">
 									</div>
 							  </div>
 								  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -75,34 +77,12 @@
 	<br>
 	<button type="button" class="btn btn-info" id="tornahome">Torna alla Homepage</button>
 </body>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
-function applicaPreferenze(){
-	var user = JSON.parse(localStorage.getItem('user'));
-	$('#titolo').attr("class","visible");
-	$('#name').html(user.username);
-	console.log(user);
-	$('body').css("background-color", user.background);
-	$('body').css("font-size", user.dimension);
-	$('body').css("font-family", user.type); 
-	$('body').css("color", user.color);
-	if (user.menu == "sin")
-		{
-			$('#menuHome').removeClass("order-2").addClass("order-1");
-			$('#bodyHome').removeClass("order-1").addClass("order-2");
-		}
-	else
-		{
-			$('#menuHome').removeClass("order-1").addClass("order-2");
-			$('#bodyHome').removeClass("order-2").addClass("order-1");
-		}
-}
 
 $(document).ready(function(){
+
+	//inizialmente il carosello è fermo
+	$('.carousel').carousel('pause');
 
 	 /*$('#carouselExampleIndicators').carousel({
 	  interval: 2000
@@ -122,7 +102,11 @@ $(document).ready(function(){
 		  opt.interval= 10000;
 		  c.data({options: opt})
 	 });*/
+	 
+	//controllo se un utente è loggato
+	utenteLoggato();
 	
+	//se non trova utenti, avvisa che bisogna registrarsi
 	if (localStorage.getItem('user') === null)
 		{
 			alert("Errore, devi registrarti con i tuoi dati");
@@ -132,6 +116,7 @@ $(document).ready(function(){
 	else
 		applicaPreferenze();
 	
+	//opera se il valore di uploadimg cambia
 	$('#uploadimg1').change( function(event) {
 		$("#img1").attr('src',URL.createObjectURL(event.target.files[0]));
 	});
@@ -145,6 +130,7 @@ $(document).ready(function(){
 	});
 	
 	$('#set_tempo').click(function () {
+		//set tempo carousel
 		const options = $("#carouselobj").data()['bs.carousel']["_config"];
 		//options.interval = 10000;
 		options.interval = $('#tempo').val();

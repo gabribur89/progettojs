@@ -11,6 +11,11 @@
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<title>Pagina di Registrazione</title>
   </head>
   <body>
@@ -229,16 +234,10 @@
 			</div>
 		  </div>
 	<!-- -->
-  
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<script>
+<script>
 	$(document).ready(function(){
-	
+
+			//variabili globali, settate a seconda della scelta del menu'
 			var bg;
 			var dm;
 			var tp;
@@ -353,6 +352,8 @@
 			}
 		});
 		
+		
+		//funzione che controlla la password
 		function confermaPassword(){
 			var pwd = $('#password').val();
 			var pwd1 = $('#password1').val();
@@ -367,9 +368,12 @@
 		}
 		
 		function validateEmail(mail) {
+			
+			//regexp mail
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			
 			return re.test(String(mail).toLowerCase());
+			//true se vi è un match tra la regexp re e la mail "castata" in stringa opportunamente trasformata in minuscolo
 		}
 		
 		$('#registrati').click(function () {
@@ -379,6 +383,8 @@
 			var pwdval = $('#password').val();
 			var mail = $('#mail').val();
 			
+			
+			//controllo del formato email e dei campi password. Se il formato della mail è sbagliato e le password non corrispondono, alert di errore
 			if ((!validateEmail(mail)) && (confermaPassword() == true))
 			{
 				//modal_avviso2
@@ -392,7 +398,7 @@
 			
 			{
 			
-				alert(JSON.stringify({
+				/*alert(JSON.stringify({
 					
 					username: userval,
 					pwd: pwdval,
@@ -401,8 +407,10 @@
 					type: tp,
 					color: col,
 					menu: posMenu,
-					loggato: false,}));
+					loggato: false,}));*/
 				
+				//i dati sono andati a buon fine, in localStorage posso salvare i valori nelle chiavi corrispondenti
+				//formato = chiave: valore;
 				
 				localStorage.setItem('user', JSON.stringify({
 					
@@ -419,6 +427,8 @@
 				
 				alert("Utente registrato correttamente");
 				//$("#modal_okreg").modal('show');
+				
+				//utente creato correttamente? reindirizzo ad index
 				window.location.replace("index.html");
 			
 			}
